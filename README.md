@@ -89,4 +89,4 @@ When user selected to display the event data as visualization
 Then the event should present a chart as data visualization
 
 ## Live app
- 
+ https://NikoSardas/github.io/meet/
