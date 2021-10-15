@@ -18,7 +18,7 @@ describe('<NumberOfEvents /> component', () => {
     })
     test('textbox number change', () => {
         NumberOfEventsWrapper.setState({
-            numEvents: 32,
+            eventsNumber: 32,
         })
         NumberOfEventsWrapper.find('.events-number').simulate('change', {
             target: { value: 20 },
@@ -27,7 +27,7 @@ describe('<NumberOfEvents /> component', () => {
     })
     test('textbox input below 1', () => {
         NumberOfEventsWrapper.setState({
-            numEvents: 32,
+            eventsNumber: 32,
         })
         NumberOfEventsWrapper.find('.events-number').simulate('change', {
             target: { value: -2 },
@@ -36,7 +36,7 @@ describe('<NumberOfEvents /> component', () => {
     })
     test('textbox input above 64', () => {
         NumberOfEventsWrapper.setState({
-            numEvents: 32,
+            eventsNumber: 32,
         })
         NumberOfEventsWrapper.find('.events-number').simulate('change', {
             target: { value: 123 },
@@ -45,11 +45,11 @@ describe('<NumberOfEvents /> component', () => {
     })
     test('textbox input is not a number', () => {
         NumberOfEventsWrapper.setState({
-            numEvents: 32,
+            eventsNumber: 32,
         })
         NumberOfEventsWrapper.find('.events-number').simulate('change', {
             target: { value: 'a' },
         })
-        expect(NumberOfEventsWrapper.state('eventsNumber')).toEqual(64)
+        expect(NumberOfEventsWrapper.state('eventsNumber')).toEqual(32)
     })
 })
