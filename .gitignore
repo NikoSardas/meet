@@ -28,5 +28,8 @@ yarn-error.log*
 config.json
 node_modules
 
+#IDE folder
+.vscode
+
 #key
 rootkey.csv
