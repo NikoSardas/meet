@@ -1,37 +1,49 @@
-body, html{
-    background-color: rgb(231, 231, 231);
-
+body,
+html {
+    height: 100%;
+    background-color: #f8f9fa;
 }
+body {
+    user-select: none;
+  }
+  
 .App {
+    height: 100%;
     /* display: flex !important; */
     /* flex-direction: column !important; */
     /* align-items: center !important; */
-}
-
-.App div {
-    /* margin: 5%; */
 }
 
 ul {
     list-style-type: none;
 }
 
-.input-field-title {
-    margin: 4px 0;
-}
-
-.inputFields {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: space-evenly !important;
-}
-
-.event-card-wrapper{
-    padding: 0 !important;
-    margin: 0 !important;
+.event-card-wrapper {
+    margin: 1% 0;
+    /* padding: 0 !important; */
+    /* margin: 0 !important; */
 }
 .event-card {
-    padding: 0 !important;
-    margin: 0 !important;
+    /* padding: 0 !important;
+    margin: 0 !important; */
     background-color: #f8f9fa;
+}
+
+.event-toggle-button {
+    position: absolute !important;
+    right: 4px !important;
+    top: 4px !important;
+    padding: 4px !important;
+    margin: 4px !important;
+}
+
+.loading-spinner {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
 }

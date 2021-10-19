@@ -8,6 +8,7 @@ import { extractLocations, getEvents } from './api.js'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import './App.css'
 
 class App extends Component {
@@ -46,31 +47,40 @@ class App extends Component {
         const { events, locations, numberOfEvents } = this.state
         return (
             <div className="App">
-                <Navbar bg="light" expand="xlg">
-                    <Container>
-                        <Navbar.Brand>
-                            Meet
-                        </Navbar.Brand>
-                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="inputFields">
-                                <Nav.Link>
-                                    <NumberOfEvents
-                                        numberOfEvents={numberOfEvents}
-                                        updateEvents={this.updateEvents}
-                                    />
-                                </Nav.Link>
-                                <Nav.Link>
-                                    <CitySearch
-                                        locations={locations}
-                                        updateEvents={this.updateEvents}
-                                    />
-                                </Nav.Link>
-                            </Nav>
-                        </Navbar.Collapse>
-                    </Container>
-                </Navbar>
-                <EventList events={events} />
+                <Container>
+                    <Row>
+                        <Navbar bg="light" expand="xlg">
+                            <Navbar.Brand>
+                                <img
+                                    alt=""
+                                    src="/%PUBLIC_URL%/loading-buffering.gif"
+                                    width="30"
+                                    height="30"
+                                    className="d-inline-block align-top"
+                                />{' '}
+                                Meet
+                            </Navbar.Brand>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                            <Navbar.Collapse id="basic-navbar-nav">
+                                <Nav className="inputFields">
+                                    <Nav.Link>
+                                        <NumberOfEvents
+                                            numberOfEvents={numberOfEvents}
+                                            updateEvents={this.updateEvents}
+                                        />
+                                    </Nav.Link>
+                                    <Nav.Link>
+                                        <CitySearch
+                                            locations={locations}
+                                            updateEvents={this.updateEvents}
+                                        />
+                                    </Nav.Link>
+                                </Nav>
+                            </Navbar.Collapse>
+                        </Navbar>
+                    </Row>
+                    <EventList events={events} />
+                </Container>
             </div>
         )
     }
