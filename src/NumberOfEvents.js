@@ -1,36 +1,35 @@
 import React, { Component } from 'react'
+import Form from 'react-bootstrap/Form'
 
 class NumberOfEvents extends Component {
-    state = {
-        eventsNumber: localStorage.getItem('eventsNumber') || 32,
-    }
-
     changeEventsNumber(eventsNumber) {
         if (eventsNumber > 64) eventsNumber = 64
         if (eventsNumber < 1) eventsNumber = 1
-        if (isNaN(eventsNumber)) eventsNumber = this.state.eventsNumber
-
-        this.setState(
-            {
-                eventsNumber,
-            },
-            () => {
-                localStorage.setItem('eventsNumber', eventsNumber)
-            }
-        )
+        this.props.updateEvents(undefined, eventsNumber)
+        localStorage.setItem('numberOfEvents', eventsNumber)
     }
     render() {
-        const { eventsNumber } = this.state
+        const { numberOfEvents } = this.props
         return (
-            <div>
-                <input
-                    className="events-number"
-                    type="number"
-                    value={eventsNumber}
-                    onChange={(e) => {
-                        this.changeEventsNumber(e.target.value)
-                    }}
-                />
+            <div className="numberOfEvents">
+                <Form>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Max displayed events</Form.Label>
+                        <Form.Control
+                            type="number"
+                            min="1"
+                            max="64"
+                            value={numberOfEvents}
+                            onChange={(e) => {
+                                this.changeEventsNumber(e.target.value)
+                            }}
+                            placeholder="Enter city name"
+                        />
+                        {/* <Form.Text className="text-muted">
+                            We'll never share your email with anyone else.
+                        </Form.Text> */}
+                    </Form.Group>
+                </Form>
             </div>
         )
     }

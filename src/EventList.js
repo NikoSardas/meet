@@ -3,12 +3,14 @@ import Event from './Event'
 
 class EventList extends Component {
     render() {
-        const { events } = this.props;
-                    
+        const { events } = this.props
         return (
-            <ul className="EventList">
+            <ul className="EventList row">
                 {events.map((event) => (
-                    <li key={event.etag}>
+                    <li
+                        className="col-sm-12 col-md-6 col-lg-4 event-card-wrapper"
+                        key={event.etag}
+                    >
                         <Event event={event} />
                     </li>
                 ))}
@@ -17,4 +19,4 @@ class EventList extends Component {
     }
 }
 
-export default EventList;
+export default EventList

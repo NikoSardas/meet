@@ -1,52 +1,53 @@
 import React, { Component } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import Card from 'react-bootstrap/card'
+import Button from 'react-bootstrap/button'
+
 class Event extends Component {
     state = {
         collapsed: true,
+        // showDescription: false
     }
-    toggleCollapsed() {
-        this.setState({
-            collapsed: !this.state.collapsed,
-        })
+
+    convertDate(date) {
+        const newDate = new Date(date).toString().slice(3, 21)
+        return newDate
     }
+
+    timeFromDate(date) {
+        const newDate = new Date(date).toString().slice(15, 21)
+        return newDate
+    }
+
     render() {
         const { event } = this.props
+        const { collapsed } = this.state
+
         return (
             <div className="eventWrapper">
-                <Card>
-                    {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+                <Card className="event-card">
                     <Card.Body>
                         <Card.Title className="event-summary">
                             {event.summary}
                         </Card.Title>
-                        <Card.Text className="event-location">
+                        <Card.Text className="event-details">
                             {event.location}
+                            {new Date(event.start.dateTime).toString().slice(3, 21)}
                         </Card.Text>
-                        <Card.Text className="event-timeZone">
-                            {event.timeZone}
-                        </Card.Text>
-                        <Card.Text className="event-start">
-                            {event.start.dateTime}
-                        </Card.Text>
-                        <Card.Text className="event-end">{event.end.dateTime}</Card.Text>
-                        <div
-                            className={`event-expanded ${!this.state
-                                .collapsed}`}
+                        <Card.Text
+                            className={`event-description ${
+                                collapsed ? 'd-none' : ''
+                            }`}
                         >
-                            <Card.Text className="event-description">
-                                {event.description}
-                            </Card.Text>
-                        </div>
+                            {event.description}
+                        </Card.Text>
                         <Button
+                            onClick={() =>
+                                this.setState({ collapsed: !collapsed })
+                            }
                             className="event-toggle-button"
                             variant="primary"
-                            onClick={() => {
-                                this.toggleCollapsed()
-                            }}
                         >
-                            {this.state.collapsed
-                                ? 'Show Details'
-                                : 'Hide Details'}
+                            {collapsed ? 'Show Details' : 'Hide Details'}
                         </Button>
                     </Card.Body>
                 </Card>

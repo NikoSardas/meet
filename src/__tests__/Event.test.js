@@ -13,7 +13,7 @@ describe('<Event /> component', () => {
         eventWrapper.setState({
             collapsed: true,
         })
-        expect(eventWrapper.find('.event-expanded').hasClass('false')).toEqual(
+        expect(eventWrapper.find('.event-description').hasClass('d-none')).toEqual(
             true
         )
     })
@@ -21,8 +21,8 @@ describe('<Event /> component', () => {
         eventWrapper.setState({
             collapsed: false,
         })
-        expect(eventWrapper.find('.event-expanded').hasClass('true')).toEqual(
-            true
+        expect(eventWrapper.find('.event-description').hasClass('d-none')).toEqual(
+            false
         )
     })
     test('Toggle state action', () => {
@@ -37,13 +37,12 @@ describe('<Event /> component', () => {
         const classesArray = [
             'event-summary',
             'event-description',
-            'event-location',
-            'event-timeZone',
-            'event-start',
-            'event-end',
+            'event-details',
+            'event-toggle-button',
         ]
         classesArray.map((eventClass) => {
             expect(eventWrapper.find(`.${eventClass}`)).toHaveLength(1)
+            return true
         })
     })
 })
