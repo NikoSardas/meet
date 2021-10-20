@@ -16,7 +16,7 @@ class App extends Component {
         allEvents: [],
         displayedEvents: [],
         locations: [],
-        currentLocation: 'See all cities',
+        currentLocation: '',
         numberOfEvents: localStorage.getItem('numberOfEvents') || 32,
     }
     componentDidMount() {
@@ -27,6 +27,7 @@ class App extends Component {
                     displayedEvents: events.slice(0, this.state.numberOfEvents),
                     locations: extractLocations(events),
                     allEvents: events,
+                    currentLocation: 'See all cities',
                 })
 
                 //use this array instead of getEvents() on each update
@@ -43,7 +44,7 @@ class App extends Component {
             eventCount = this.state.numberOfEvents
             this.setState({ currentLocation: location })
         }
-        if(!location){
+        if (!location) {
             location = this.state.currentLocation
         }
         events =
@@ -55,14 +56,14 @@ class App extends Component {
             numberOfEvents: eventCount,
         })
     }
-
     render() {
         const { displayedEvents, locations, numberOfEvents } = this.state
         return (
             <div className="App">
                 <Container>
                     <Row>
-                        <Navbar bg="light" expand="xxl">
+                        <Navbar expand="xxl">
+                            {/* TODO find image location */}
                             <Navbar.Brand>
                                 {/* <img
                                     alt=""

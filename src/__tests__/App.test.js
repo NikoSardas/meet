@@ -37,7 +37,7 @@ describe('<App /> integration', () => {
     })
     test('App passes "events" state as a prop to EventList', () => {
         AppWrapper = mount(<App />)
-        const AppEventsState = AppWrapper.state('events')
+        const AppEventsState = AppWrapper.state('displayedEvents')
         expect(AppEventsState).not.toEqual(undefined)
         expect(AppWrapper.find(EventList).props().events).toEqual(
             AppEventsState
@@ -50,17 +50,6 @@ describe('<App /> integration', () => {
         expect(AppLocationsState).not.toEqual(undefined)
         expect(AppWrapper.find(CitySearch).props().locations).toEqual(
             AppLocationsState
-        )
-        AppWrapper.unmount()
-    })
-    test('App passes "numberOfEvents" state as a prop to NumberOfEvents', () => {
-        AppWrapper = mount(<App />)
-        const AppNumberOfEventsState = AppWrapper.state('numberOfEvents')
-        expect(AppNumberOfEventsState).not.toEqual(undefined)
-        expect(AppNumberOfEventsState).not.toBeGreaterThan(64)
-        expect(AppNumberOfEventsState).not.toBeLessThan(1)
-        expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(
-            AppNumberOfEventsState
         )
         AppWrapper.unmount()
     })
@@ -97,6 +86,17 @@ describe('<App /> integration', () => {
         expect(AppWrapper.state('events')).toEqual(eventsToShow)
         AppWrapper.unmount()
     })
+    test('App passes "numberOfEvents" state as a prop to NumberOfEvents', () => {
+        AppWrapper = mount(<App />)
+        const AppNumberOfEventsState = AppWrapper.state('numberOfEvents')
+        expect(AppNumberOfEventsState).not.toEqual(undefined)
+        expect(AppNumberOfEventsState).not.toBeGreaterThan(64)
+        expect(AppNumberOfEventsState).not.toBeLessThan(1)
+        expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(
+            AppNumberOfEventsState
+        )
+        AppWrapper.unmount()
+    })
     test('App numberOfEvents state equals input from NumberOfEvents', async () => {
         let AppWrapper = mount(<App />)
         AppWrapper.setState({ numberOfEvents: 32 })
@@ -106,4 +106,17 @@ describe('<App /> integration', () => {
         expect(AppWrapper.state('numberOfEvents')).toEqual(1)
         AppWrapper.unmount()
     })
+    // test('Events component displays the correct number of events', async () => {
+    //     let AppWrapper = mount(<App />)
+    //     let EventListWrapper = AppWrapper.find(EventList)
+    //     AppWrapper.setState({
+    //         numberOfEvents: 1,
+    //     })
+    //     expect(EventListWrapper.props().events.length).toEqual(1)
+    //     AppWrapper.setState({
+    //         numberOfEvents: 2,
+    //     })
+    //     expect(EventListWrapper.props().events.length).toEqual(2)
+    //     AppWrapper.unmount()
+    // })
 })

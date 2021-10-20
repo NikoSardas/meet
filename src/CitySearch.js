@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 class CitySearch extends Component {
     state = {
-        displayedSelection: '',
+        displayedSelection: 'See all cities',
     }
 
     handleItemClicked = (location) => {

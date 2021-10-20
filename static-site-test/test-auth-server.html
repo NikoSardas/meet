@@ -71,8 +71,6 @@
             "https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/token";
 
         getAccessToken.onclick = function () {
-            console.log(codeValue);
-            console.log(codeValue.value);
             let code = codeValue.value;
             if (decodeURIComponent(code) === code) {
                 code = encodeURIComponent(codeValue.value);
