@@ -27,7 +27,7 @@ class CitySearch extends Component {
                     <Dropdown.Menu className="suggestions">
                         <Dropdown.Item
                             className="all-cities"
-                            onClick={() => this.handleItemClicked('all')}
+                            onClick={() => this.handleItemClicked('See all cities')}
                         >
                             See all cities
                         </Dropdown.Item>

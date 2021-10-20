@@ -14,9 +14,9 @@ import './App.css'
 class App extends Component {
     state = {
         allEvents: [],
-        events: [],
+        displayedEvents: [],
         locations: [],
-        currentLocation: '',
+        currentLocation: 'See all cities',
         numberOfEvents: localStorage.getItem('numberOfEvents') || 32,
     }
     componentDidMount() {
@@ -24,7 +24,7 @@ class App extends Component {
         getEvents().then((events) => {
             if (this.mounted) {
                 this.setState({
-                    events: events.slice(0, this.state.numberOfEvents),
+                    displayedEvents: events.slice(0, this.state.numberOfEvents),
                     locations: extractLocations(events),
                     allEvents: events,
                 })
@@ -41,21 +41,24 @@ class App extends Component {
     updateEvents = (location, eventCount) => {
         let events = this.state.allEvents
         if (!eventCount) {
-            this.setState({ currentLocation: location })
             eventCount = this.state.numberOfEvents
-            events =
-                location === 'all'
-                    ? events
-                    : events.filter((event) => event.location === location)
+            this.setState({ currentLocation: location })
         }
+        if(!location){
+            location = this.state.currentLocation
+        }
+        events =
+            location === 'See all cities'
+                ? events
+                : events.filter((event) => event.location === location)
         this.setState({
-            events: events.slice(0, eventCount),
+            displayedEvents: events.slice(0, eventCount),
             numberOfEvents: eventCount,
         })
     }
 
     render() {
-        const { events, locations, numberOfEvents } = this.state
+        const { displayedEvents, locations, numberOfEvents } = this.state
         return (
             <div className="App">
                 <Container>
@@ -90,7 +93,7 @@ class App extends Component {
                             </Navbar.Collapse>
                         </Navbar>
                     </Row>
-                    <EventList events={events} />
+                    <EventList events={displayedEvents} />
                 </Container>
             </div>
         )

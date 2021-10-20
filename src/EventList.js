@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Event from './Event'
-import ListGroup from 'react-bootstrap/ListGroup'
 
 class EventList extends Component {
     render() {
