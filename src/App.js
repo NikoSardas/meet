@@ -37,7 +37,6 @@ class App extends Component {
     componentWillUnmount() {
         this.mounted = false
     }
-    //TODO fix number change defaulting location
     updateEvents = (location, eventCount) => {
         let events = this.state.allEvents
         if (!eventCount) {
