@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+:root {
+    --main-bg-color: #f8f9fa;
+    --main-color: #6b6b6b;
+    --event-background-color: #f3f3f3;
+}
+
 body,
 html {
     font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
 }
 body {
     user-select: none;
@@ -31,8 +38,7 @@ ul {
     margin: 1% 0;
 }
 .event-card {
-    background-color: rgb(243, 243, 243);
-    color: rgb(107, 107, 107);
+    background-color: var(--event-background-color);
 }
 
 .card-top {
@@ -51,7 +57,7 @@ ul {
 }
 
 .event-description {
-    margin:5px 0;
+    margin: 5px 0;
 }
 .loading-spinner {
     margin: auto;
@@ -62,4 +68,43 @@ ul {
     right: 0;
     width: 100px;
     height: 100px;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    input[type='range'] {
+        overflow: hidden;
+        width: 160px;
+        -webkit-appearance: none;
+        background-color: transparent;
+    }
+
+    input[type='range']:focus {
+        background-color: transparent;
+        border: 1px solid gray;
+    }
+
+    input[type='range']::-webkit-slider-runnable-track {
+        height: 10px;
+        -webkit-appearance: none;
+        color: --main-bg-color;
+        margin-top: -1px;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+        width: 10px;
+        -webkit-appearance: none;
+        height: 10px;
+        cursor: ew-resize;
+        background: var(--main-color);
+        box-shadow: none;
+    }
+
+    .dropdown-item:focus {
+        background-color: transparent;
+        color: var(--main-color);
+    }
+
+    .dropdown-menu {
+        background-color: transparent;
+    }
 }

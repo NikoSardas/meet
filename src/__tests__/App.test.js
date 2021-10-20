@@ -18,6 +18,13 @@ describe('<App /> component', () => {
     test('render CitySearch', () => {
         expect(AppWrapper.find(CitySearch)).toHaveLength(1)
     })
+    test('Events array length is not greater than numberOfEvents', async () => {
+        AppWrapper = shallow(<App />)
+        const AppNumberOfEventsState = AppWrapper.state('numberOfEvents')
+        const allEvents = await getEvents()
+        expect(allEvents.length).not.toBeGreaterThan(AppNumberOfEventsState)
+        AppWrapper.unmount()
+    })
 })
 
 describe('<App /> integration', () => {
@@ -60,33 +67,43 @@ describe('<App /> integration', () => {
     test('get list of events matching the city selected by the user', async () => {
         AppWrapper = mount(<App />)
         const CitySearchWrapper = AppWrapper.find(CitySearch)
-        const locations = extractLocations(mockData)
-        CitySearchWrapper.setState({ suggestions: locations })
-        const suggestions = CitySearchWrapper.state('suggestions')
-        const selectedIndex = Math.floor(Math.random() * suggestions.length)
-        const selectedCity = suggestions[selectedIndex]
+        const locationsData = extractLocations(mockData)
+        const selectedCity = locationsData[0]
         await CitySearchWrapper.instance().handleItemClicked(selectedCity)
         const allEvents = await getEvents()
         const eventsToShow = allEvents.filter(
             (event) => event.location === selectedCity
         )
+        AppWrapper.setState({
+            events: eventsToShow,
+            numberOfEvents: 1,
+        })
         expect(AppWrapper.state('events')).toEqual(eventsToShow)
         AppWrapper.unmount()
     })
     test('get list of all events when user selects "See all cities"', async () => {
         AppWrapper = mount(<App />)
-        const suggestionItems =
-            AppWrapper.find(CitySearch).find('.suggestions li')
-        await suggestionItems.at(suggestionItems.length - 1).simulate('click')
+        const CitySearchWrapper = AppWrapper.find(CitySearch)
+        const allCities = CitySearchWrapper.find('all-cities')
+        await CitySearchWrapper.instance().handleItemClicked(allCities)
         const allEvents = await getEvents()
-        expect(AppWrapper.state('events')).toEqual(allEvents)
+        const eventsToShow = allEvents.filter(
+            (event) => event.location === allCities
+        )
+        AppWrapper.setState({
+            events: eventsToShow,
+            numberOfEvents: 1,
+        })
+        expect(AppWrapper.state('events')).toEqual(eventsToShow)
         AppWrapper.unmount()
     })
-    test('Events array length is not greater than numberOfEvents', async () => {
-        AppWrapper = mount(<App />)
-        const AppNumberOfEventsState = AppWrapper.state('numberOfEvents')
-        const allEvents = await getEvents()
-        expect(allEvents.length).not.toBeGreaterThan(AppNumberOfEventsState)
+    test('App numberOfEvents state equals input from NumberOfEvents', async () => {
+        let AppWrapper = mount(<App />)
+        AppWrapper.setState({ numberOfEvents: 32 })
+        const numEventsInputWrapper = AppWrapper.find(NumberOfEvents)
+        const eventObject = { target: { value: 1 } }
+        numEventsInputWrapper.find('input').simulate('change', eventObject)
+        expect(AppWrapper.state('numberOfEvents')).toEqual(1)
         AppWrapper.unmount()
     })
 })

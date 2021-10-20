@@ -13,22 +13,20 @@ class NumberOfEvents extends Component {
         return (
             <div className="numberOfEvents">
                 <Form>
-                    <Form.Group className="mb-2">
-                        <Form.Label>Max displayed events</Form.Label>
+                    <Form.Group className="number-of-events mt-3"  controlId="formBasicEmail">
                         <Form.Control
-                            type="number"
+                            className="number-slider"
+                            type="range"
                             min="1"
                             max="64"
                             value={numberOfEvents}
-                            // onSubmit={(e)=>{e.preventDefault()}}
                             onChange={(e) => {
                                 this.changeEventsNumber(e.target.value)
                             }}
-                            placeholder="Enter city name"
                         />
-                        {/* <Form.Text className="text-muted">
-                            for later
-                        </Form.Text> */}
+                        <Form.Text className="text-muted">
+                            Events displayed: {numberOfEvents}
+                        </Form.Text>
                     </Form.Group>
                 </Form>
             </div>

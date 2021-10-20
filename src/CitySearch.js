@@ -3,26 +3,30 @@ import Dropdown from 'react-bootstrap/Dropdown'
 
 class CitySearch extends Component {
     state = {
-        query: '',
-        suggestions: [],
+        displayedSelection: '',
     }
-    handleItemClicked = (suggestion) => {
+
+    handleItemClicked = (location) => {
         const { updateEvents } = this.props
-        this.setState({
-            query: suggestion,
-        })
-        updateEvents(suggestion, undefined)
+        this.setState({ displayedSelection: location })
+        updateEvents(location, undefined)
     }
     render() {
         const { locations } = this.props
+        const { displayedSelection } = this.state
+
         return (
-            <div className="CitySearch">
+            <div className="CitySearch mt-3 mb-3">
                 <Dropdown>
-                    <Dropdown.Toggle variant="outline-secondary">
+                    <Dropdown.Toggle
+                        variant="outline-secondary"
+                        id="dropdown-basic"
+                    >
                         Filter by city
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="suggestions">
                         <Dropdown.Item
+                            className="all-cities"
                             onClick={() => this.handleItemClicked('all')}
                         >
                             See all cities
@@ -39,6 +43,7 @@ class CitySearch extends Component {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
+                <p>{displayedSelection}</p>
             </div>
         )
     }

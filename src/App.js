@@ -16,13 +16,16 @@ class App extends Component {
         allEvents: [],
         events: [],
         locations: [],
+        currentLocation: '',
         numberOfEvents: localStorage.getItem('numberOfEvents') || 32,
     }
     componentDidMount() {
         this.mounted = true
         getEvents().then((events) => {
             if (this.mounted) {
-                this.setState({ events, locations: extractLocations(events) })
+                this.setState({ events, locations: extractLocations(events),allEvents: events })
+
+                //use this array instead of getEvents() on each update
                 this.setState({ allEvents: events })
             }
         })
@@ -30,18 +33,16 @@ class App extends Component {
     componentWillUnmount() {
         this.mounted = false
     }
+    //TODO fix number change defaulting location
     updateEvents = (location, eventCount) => {
-        // getEvents().then((events) => {
         let events = this.state.allEvents
-        if (!eventCount) {
-            eventCount = this.state.numberOfEvents
-            events =
-                location === 'all'
-                    ? events
-                    : events.filter((event) => event.location === location)
-        }
+        this.setState({ currentLocation: location })
+        events =
+            location === 'all'
+                ? events
+                : events.filter((event) => event.location === location)
         this.setState({
-            events: events.slice(0, eventCount),
+            events: events.slice(0, eventCount || this.state.numberOfEvents),
             numberOfEvents: eventCount,
         })
         // })
