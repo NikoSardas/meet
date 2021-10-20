@@ -14,14 +14,31 @@ class Event extends Component {
         return (
             <Card className="event-card">
                 <Card.Body>
-                    <Card.Title className="event-summary">
-                        {event.summary}
-                    </Card.Title>
-                    <Card.Text className="event-details">
-                        {event.location}
-                        <br />
-                        {new Date(event.start.dateTime).toString().slice(3, 21)}
-                    </Card.Text>
+                    <div className="card-top">
+                        <div className="card-top-left">
+                            <Card.Title className="event-summary">
+                                {event.summary}
+                            </Card.Title>
+                            <Card.Text className="event-details">
+                                {event.location}
+                                <br />
+                                {new Date(event.start.dateTime)
+                                    .toString()
+                                    .slice(3, 21)}
+                            </Card.Text>
+                        </div>
+                        <div className="card-top-right">
+                            <Button
+                                onClick={() =>
+                                    this.setState({ collapsed: !collapsed })
+                                }
+                                className="event-toggle-button"
+                                variant="outline-secondary"
+                            >
+                                {collapsed ? 'Show Details' : 'Hide Details'}
+                            </Button>
+                        </div>
+                    </div>
                     <Card.Text
                         className={`event-description ${
                             collapsed ? 'd-none' : ''
@@ -29,13 +46,6 @@ class Event extends Component {
                     >
                         {event.description}
                     </Card.Text>
-                    <Button
-                        onClick={() => this.setState({ collapsed: !collapsed })}
-                        className="event-toggle-button"
-                        variant="secondary"
-                    >
-                        {collapsed ? 'Show Details' : 'Hide Details'}
-                    </Button>
                 </Card.Body>
             </Card>
         )

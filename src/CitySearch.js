@@ -24,6 +24,10 @@ class CitySearch extends Component {
         })
         updateEvents(suggestion, undefined)
     }
+    handleSubmit = (e) => {
+        alert(e)
+        e.preventDefault()
+    }
     render() {
         const { query, suggestions } = this.state
         return (
@@ -36,6 +40,7 @@ class CitySearch extends Component {
                             className="city"
                             value={query}
                             onChange={this.handleInputChanged}
+                            onSubmit={this.handleSubmit}
                             placeholder="Enter city name"
                         />
                         {/* <Form.Text className="text-muted">

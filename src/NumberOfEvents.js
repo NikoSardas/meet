@@ -20,6 +20,7 @@ class NumberOfEvents extends Component {
                             min="1"
                             max="64"
                             value={numberOfEvents}
+                            onSubmit={(e)=>{e.preventDefault()}}
                             onChange={(e) => {
                                 this.changeEventsNumber(e.target.value)
                             }}

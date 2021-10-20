@@ -13,6 +13,7 @@ import './App.css'
 
 class App extends Component {
     state = {
+        allEvents: [],
         events: [],
         locations: [],
         numberOfEvents: localStorage.getItem('numberOfEvents') || 32,
@@ -22,6 +23,7 @@ class App extends Component {
         getEvents().then((events) => {
             if (this.mounted) {
                 this.setState({ events, locations: extractLocations(events) })
+                this.setState({ allEvents: events })
             }
         })
     }
@@ -29,19 +31,20 @@ class App extends Component {
         this.mounted = false
     }
     updateEvents = (location, eventCount) => {
-        getEvents().then((events) => {
-            if (!eventCount) {
-                eventCount = this.state.numberOfEvents
-                events =
-                    location === 'all'
-                        ? events
-                        : events.filter((event) => event.location === location)
-            }
-            this.setState({
-                events: events.slice(0, eventCount),
-                numberOfEvents: eventCount,
-            })
+        // getEvents().then((events) => {
+        let events = this.state.allEvents
+        if (!eventCount) {
+            eventCount = this.state.numberOfEvents
+            events =
+                location === 'all'
+                    ? events
+                    : events.filter((event) => event.location === location)
+        }
+        this.setState({
+            events: events.slice(0, eventCount),
+            numberOfEvents: eventCount,
         })
+        // })
     }
     render() {
         const { events, locations, numberOfEvents } = this.state
@@ -51,13 +54,13 @@ class App extends Component {
                     <Row>
                         <Navbar bg="light" expand="xlg">
                             <Navbar.Brand>
-                                <img
+                                {/* <img
                                     alt=""
-                                    src="/%PUBLIC_URL%/loading-buffering.gif"
+                                    src=""
                                     width="30"
                                     height="30"
                                     className="d-inline-block align-top"
-                                />{' '}
+                                /> */}
                                 Meet
                             </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
