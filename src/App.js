@@ -24,7 +24,7 @@ class App extends Component {
         getEvents().then((events) => {
             if (this.mounted) {
                 this.setState({
-                    events,
+                    events: events.slice(0, this.state.numberOfEvents),
                     locations: extractLocations(events),
                     allEvents: events,
                 })
@@ -39,19 +39,18 @@ class App extends Component {
     }
     //TODO fix number change defaulting location
     updateEvents = (location, eventCount) => {
-        getEvents().then((events) => {
-            if (!eventCount) {
-                this.setState({ currentLocation: location })
-                eventCount = this.state.numberOfEvents
-                events =
-                    location === 'all'
-                        ? events
-                        : events.filter((event) => event.location === location)
-            }
-            this.setState({
-                events: events.slice(0, eventCount),
-                numberOfEvents: eventCount,
-            })
+        let events = this.state.allEvents
+        if (!eventCount) {
+            this.setState({ currentLocation: location })
+            eventCount = this.state.numberOfEvents
+            events =
+                location === 'all'
+                    ? events
+                    : events.filter((event) => event.location === location)
+        }
+        this.setState({
+            events: events.slice(0, eventCount),
+            numberOfEvents: eventCount,
         })
     }
 
