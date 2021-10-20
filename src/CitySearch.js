@@ -1,21 +1,10 @@
 import React, { Component } from 'react'
-import Form from 'react-bootstrap/Form'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 class CitySearch extends Component {
     state = {
         query: '',
         suggestions: [],
-    }
-    handleInputChanged = (event) => {
-        const { locations } = this.props
-        const value = event.target.value
-        const suggestions = locations.filter((location) => {
-            return location.toUpperCase().indexOf(value.toUpperCase()) > -1
-        })
-        this.setState({
-            query: value,
-            suggestions,
-        })
     }
     handleItemClicked = (suggestion) => {
         const { updateEvents } = this.props
@@ -24,50 +13,32 @@ class CitySearch extends Component {
         })
         updateEvents(suggestion, undefined)
     }
-    handleSubmit = (e) => {
-        alert(e)
-        e.preventDefault()
-    }
     render() {
-        const { query, suggestions } = this.state
+        const { locations } = this.props
         return (
             <div className="CitySearch">
-                <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Filter by city</Form.Label>
-                        <Form.Control
-                            type="text"
-                            className="city"
-                            value={query}
-                            onChange={this.handleInputChanged}
-                            onSubmit={this.handleSubmit}
-                            placeholder="Enter city name"
-                        />
-                        {/* <Form.Text className="text-muted">
-                            We'll never share your email with anyone else.
-                        </Form.Text> */}
-                    </Form.Group>
-                </Form>
-                {/* <p className="input-field-title">Filter by city:</p>
-                <input
-                    type="text"
-                    className="city"
-                    value={query}
-                    onChange={this.handleInputChanged}
-                /> */}
-                <ul className="suggestions">
-                    {suggestions.map((suggestion) => (
-                        <li
-                            key={suggestion}
-                            onClick={() => this.handleItemClicked(suggestion)}
+                <Dropdown>
+                    <Dropdown.Toggle variant="outline-secondary">
+                        Filter by city
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="suggestions">
+                        <Dropdown.Item
+                            onClick={() => this.handleItemClicked('all')}
                         >
-                            {suggestion}
-                        </li>
-                    ))}
-                    <li onClick={() => this.handleItemClicked('all')}>
-                        <b>See all cities</b>
-                    </li>
-                </ul>
+                            See all cities
+                        </Dropdown.Item>
+                        {locations.map((location) => (
+                            <Dropdown.Item
+                                className="city"
+                                value={location}
+                                key={location}
+                                onClick={() => this.handleItemClicked(location)}
+                            >
+                                {location}
+                            </Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                </Dropdown>
             </div>
         )
     }

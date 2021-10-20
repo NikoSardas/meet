@@ -3,7 +3,7 @@
 body,
 html {
     font-family: 'Roboto', sans-serif;
-    background-color: rgb(243, 243, 243);
+    background-color: #f8f9fa;
 }
 body {
     user-select: none;
@@ -31,7 +31,7 @@ ul {
     margin: 1% 0;
 }
 .event-card {
-    background-color: transparent;
+    background-color: rgb(243, 243, 243);
     color: rgb(107, 107, 107);
 }
 
@@ -51,10 +51,7 @@ ul {
 }
 
 .event-description {
-    /* margin:5px; */
-    padding: 5px;
-    background-color: rgb(224, 224, 224);
-    color: rgb(66, 66, 66);
+    margin:5px 0;
 }
 .loading-spinner {
     margin: auto;

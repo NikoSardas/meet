@@ -52,7 +52,7 @@ class App extends Component {
             <div className="App">
                 <Container>
                     <Row>
-                        <Navbar bg="light" expand="xlg">
+                        <Navbar bg="light" expand="xxl">
                             <Navbar.Brand>
                                 {/* <img
                                     alt=""
@@ -66,18 +66,18 @@ class App extends Component {
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 <Nav className="inputFields">
-                                    <Nav.Link>
+                                    <div>
                                         <NumberOfEvents
                                             numberOfEvents={numberOfEvents}
                                             updateEvents={this.updateEvents}
                                         />
-                                    </Nav.Link>
-                                    <Nav.Link>
+                                    </div>
+                                    <div>
                                         <CitySearch
                                             locations={locations}
                                             updateEvents={this.updateEvents}
                                         />
-                                    </Nav.Link>
+                                    </div>
                                 </Nav>
                             </Navbar.Collapse>
                         </Navbar>
