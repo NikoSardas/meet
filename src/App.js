@@ -22,11 +22,12 @@ class App extends Component {
     componentDidMount() {
         this.mounted = true
         getEvents().then((events) => {
+            const allEvents = events
             if (this.mounted) {
                 this.setState({
                     displayedEvents: events.slice(0, this.state.numberOfEvents),
                     locations: extractLocations(events),
-                    allEvents: events,
+                    allEvents,
                     currentLocation: 'See all cities',
                 })
 
