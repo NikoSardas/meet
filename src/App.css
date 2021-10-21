@@ -92,7 +92,7 @@ ul {
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
     input[type='range'] {
         overflow: hidden;
-        width: 160px;
+        width: 100%;
         -webkit-appearance: none;
         background-color: transparent;
     }

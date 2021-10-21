@@ -38,7 +38,7 @@ class App extends Component {
     }
     updateEvents = (location, eventCount) => {
         let events = this.state.allEvents
-        this.setState({ displayedEvents: "" })
+        console.log(events.length);
         if (!eventCount) {
             eventCount = this.state.numberOfEvents
             this.setState({ currentLocation: location })
@@ -50,6 +50,7 @@ class App extends Component {
             location === 'See all cities'
                 ? events
                 : events.filter((event) => event.location === location)
+        this.setState({ displayedEvents: '' })
         this.setState({
             displayedEvents: events.slice(0, eventCount),
             numberOfEvents: eventCount,
