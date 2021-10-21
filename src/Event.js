@@ -11,7 +11,7 @@ class Event extends Component {
         const { collapsed } = this.state
 
         return (
-            <Card className="event-card">
+            <Card className="event-card" >
                 <Card.Body
                     className="event-card-body"
                     onClick={() => this.setState({ collapsed: !collapsed })}
