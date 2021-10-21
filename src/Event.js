@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Card from 'react-bootstrap/card'
-import Button from 'react-bootstrap/button'
 
 class Event extends Component {
     state = {
@@ -32,15 +31,6 @@ class Event extends Component {
                                     .slice(3, 21)}
                             </Card.Text>
                         </div>
-                        {/* <Button
-                                onClick={() =>
-                                    this.setState({ collapsed: !collapsed })
-                                }
-                                className="event-toggle-button"
-                                variant="outline-secondary"
-                            >
-                                {collapsed ? 'Show Details' : 'Hide Details'}
-                            </Button> */}
                     </div>
                     <Card.Text
                         className={`event-description ${

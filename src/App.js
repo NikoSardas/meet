@@ -37,23 +37,24 @@ class App extends Component {
         this.mounted = false
     }
     updateEvents = (location, eventCount) => {
-        let events = this.state.allEvents
-        console.log(events.length);
+        let allEvents = this.state.allEvents
+        this.setState({ displayedEvents: [] })
         if (!eventCount) {
             eventCount = this.state.numberOfEvents
             this.setState({ currentLocation: location })
         }
         if (!location) {
             location = this.state.currentLocation
+            this.setState({
+                numberOfEvents: eventCount,
+            })
         }
-        events =
+        let events =
             location === 'See all cities'
-                ? events
-                : events.filter((event) => event.location === location)
-        this.setState({ displayedEvents: '' })
+                ? allEvents
+                : allEvents.filter((event) => event.location === location)
         this.setState({
             displayedEvents: events.slice(0, eventCount),
-            numberOfEvents: eventCount,
         })
     }
     render() {
@@ -65,13 +66,13 @@ class App extends Component {
                         <Navbar expand="xxl">
                             {/* TODO find image location */}
                             <Navbar.Brand>
-                                {/* <img
+                                <img
                                     alt=""
-                                    src=""
+                                    src="meet_logo.png"
                                     width="30"
                                     height="30"
                                     className="d-inline-block align-top"
-                                /> */}
+                                />
                                 Meet
                             </Navbar.Brand>
                             <Navbar.Toggle aria-controls="basic-navbar-nav" />

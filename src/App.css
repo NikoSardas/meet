@@ -2,17 +2,16 @@
 
 :root {
     --main-bg-color: #f8f9fa;
-    --main-color: #6b6b6b;
-    --event-background-color: #f3f3f3;
-    --event-description-color: #353535;
-    --event-details-color: #7c7c7c;
+    --event-background-color: #ffffff;
+    --main-color: #707070;
+    --event-details-color: #979797;
+    --event-description-color: #6d6d6d;
 }
 
 body,
 html {
     font-family: 'Roboto', sans-serif;
     background-color: var(--main-bg-color);
-    color: var(--main-color);
 }
 
 body {
@@ -42,20 +41,20 @@ ul {
 }
 
 .event-card {
-    /* background-color: var(--event-background-color); */
     background-color: var(--event-background-color);
 }
 
 .event-card-body {
     cursor: pointer;
-    /* cursor: url('path-to-image.png'), auto;	 */
 }
 
 .card-top {
+    color: var(--main-color);
     display: flex;
     flex-flow: wrap column;
     justify-content: space-between;
-    min-height:120px !important;
+    min-height: 120px !important;
+    text-align: center;
 }
 
 .event-details {
@@ -68,14 +67,11 @@ ul {
 
 .card-top-right {
     flex-grow: 1;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
 }
 
 .event-description {
-    margin: 5px 0;
-    color: --event-description-color;
+    margin: 5px ;
+    color: var(--event-description-color);
 }
 
 .loading-spinner {

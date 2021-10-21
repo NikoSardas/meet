@@ -12,8 +12,15 @@ class NumberOfEvents extends Component {
         const { numberOfEvents } = this.props
         return (
             <div className="numberOfEvents">
-                <Form>
-                    <Form.Group className="number-of-events mt-3"  controlId="formBasicEmail">
+                <Form
+                    onSubmit={(e) => {
+                        e.preventDefault()
+                    }}
+                >
+                    <Form.Group
+                        className="number-of-events mt-3"
+                        controlId="formBasicEmail"
+                    >
                         <Form.Control
                             className="number-slider"
                             type="range"

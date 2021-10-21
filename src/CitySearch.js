@@ -22,15 +22,15 @@ class CitySearch extends Component {
                         variant="outline-secondary"
                         id="dropdown-basic"
                     >
-                        Filter by city
+                        <span className="displayed-selection">{displayedSelection}</span>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="suggestions">
                         <Dropdown.Item
                             className="all-cities"
-                            onClick={() => this.handleItemClicked('See all cities')}
-                        >
-                            See all cities
-                        </Dropdown.Item>
+                            onClick={() =>
+                                this.handleItemClicked('See all cities')
+                            }
+                        ></Dropdown.Item>
                         {locations.map((location) => (
                             <Dropdown.Item
                                 className="city"
@@ -43,7 +43,6 @@ class CitySearch extends Component {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
-                <p>{displayedSelection}</p>
             </div>
         )
     }

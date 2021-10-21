@@ -14,7 +14,7 @@ describe('<CitySearch /> component', () => {
         )
     })
     test('render text input', () => {
-        expect(CitySearchWrapper.find('.city')).toHaveLength(2)
+        expect(CitySearchWrapper.find('.displayed-selection')).toHaveLength(1)
     })
     test('renders a list of suggestions', () => {
         expect(CitySearchWrapper.find('.suggestions')).toHaveLength(1)
