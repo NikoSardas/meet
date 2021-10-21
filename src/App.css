@@ -52,6 +52,7 @@ ul {
 
 .card-top {
     display: flex;
+    flex-flow: wrap column;
     justify-content: space-between;
     min-height:120px !important;
 }
@@ -59,17 +60,17 @@ ul {
 .event-details {
     color: var(--event-details-color);
 }
-/* 
+
 .card-top-left {
-    flex-grow: 5;
+    flex-grow: 1;
 }
 
 .card-top-right {
     flex-grow: 1;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-} */
+    align-items: center; */
+}
 
 .event-description {
     margin: 5px 0;
