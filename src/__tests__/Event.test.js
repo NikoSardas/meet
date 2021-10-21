@@ -4,44 +4,40 @@ import Event from '../Event'
 import { mockData } from '../mock-data'
 
 describe('<Event /> component', () => {
-    let eventWrapper
-    let event = mockData[0]
-    beforeAll(() => {
-        eventWrapper = shallow(<Event event={event} />)
+  let eventWrapper
+  let event = mockData[0]
+  beforeAll(() => {
+    eventWrapper = shallow(<Event event={event} />)
+  })
+  test('Event collapsed by default', () => {
+    eventWrapper.setState({
+      collapsed: true,
     })
-    test('Event collapsed by default', () => {
-        eventWrapper.setState({
-            collapsed: true,
-        })
-        expect(
-            eventWrapper.find('.event-description').hasClass('d-none')
-        ).toEqual(true)
+    expect(eventWrapper.find('.event-description').hasClass('d-none')).toEqual(
+      true
+    )
+  })
+  test('Show details on expansion', () => {
+    eventWrapper.setState({
+      collapsed: false,
     })
-    test('Show details on expansion', () => {
-        eventWrapper.setState({
-            collapsed: false,
-        })
-        expect(
-            eventWrapper.find('.event-description').hasClass('d-none')
-        ).toEqual(false)
+    expect(eventWrapper.find('.event-description').hasClass('d-none')).toEqual(
+      false
+    )
+  })
+  test('Toggle state action', () => {
+    const collapsedState = eventWrapper.state('collapsed')
+    eventWrapper.setState({
+      collapsed: collapsedState,
     })
-    test('Toggle state action', () => {
-        const collapsedState = eventWrapper.state('collapsed')
-        eventWrapper.setState({
-            collapsed: collapsedState,
-        })
-        eventWrapper.find('.event-card-body').simulate('click')
-        expect(eventWrapper.state('collapsed')).toBe(!collapsedState)
+    eventWrapper.find('.event-card-body').simulate('click')
+    expect(eventWrapper.state('collapsed')).toBe(!collapsedState)
+  })
+  test('Make sure all details are rendered', () => {
+    const classesArray = ['event-summary', 'event-description', 'event-details']
+    classesArray.map((eventClass) => {
+      expect(eventWrapper.find(`.${eventClass}`)).toHaveLength(1)
+      return true
     })
-    test('Make sure all details are rendered', () => {
-        const classesArray = [
-            'event-summary',
-            'event-description',
-            'event-details',
-        ]
-        classesArray.map((eventClass) => {
-            expect(eventWrapper.find(`.${eventClass}`)).toHaveLength(1)
-            return true
-        })
-    })
+  })
 })
