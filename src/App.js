@@ -17,7 +17,7 @@ class App extends Component {
         displayedEvents: [],
         locations: [],
         currentLocation: '',
-        numberOfEvents: localStorage.getItem('numberOfEvents') || 32,
+        numberOfEvents: Number(localStorage.getItem('numberOfEvents')) || 32,
     }
     componentDidMount() {
         this.mounted = true

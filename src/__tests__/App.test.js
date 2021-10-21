@@ -106,17 +106,15 @@ describe('<App /> integration', () => {
         expect(AppWrapper.state('numberOfEvents')).toEqual(1)
         AppWrapper.unmount()
     })
-    // test('Events component displays the correct number of events', async () => {
-    //     let AppWrapper = mount(<App />)
-    //     let EventListWrapper = AppWrapper.find(EventList)
-    //     AppWrapper.setState({
-    //         numberOfEvents: 1,
-    //     })
-    //     expect(EventListWrapper.props().events.length).toEqual(1)
-    //     AppWrapper.setState({
-    //         numberOfEvents: 2,
-    //     })
-    //     expect(EventListWrapper.props().events.length).toEqual(2)
-    //     AppWrapper.unmount()
-    // })
+    test('Events component displays the correct number of events', async () => {
+        let AppWrapper = mount(<App />)
+        const eventsNumber = AppWrapper.state('numberOfEvents')
+        const allEvents = await getEvents()
+        AppWrapper.setState({
+            displayedEvents: allEvents.slice(0, eventsNumber),
+        })
+        expect(AppWrapper.find(EventList).props().events.length).toEqual(eventsNumber)
+        AppWrapper.unmount()
+    })
 })
+
