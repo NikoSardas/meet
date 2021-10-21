@@ -43,7 +43,7 @@ ul {
 
 .event-card {
     /* background-color: var(--event-background-color); */
-    background-color: yellowgreen;
+    background-color: var(--event-background-color);
 }
 
 .event-card-body {
