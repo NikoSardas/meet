@@ -37,8 +37,8 @@ class App extends Component {
         this.mounted = false
     }
     updateEvents = (location, eventCount) => {
-        console.log(location,eventCount);
         let events = this.state.allEvents
+        this.setState({ displayedEvents: "" })
         if (!eventCount) {
             eventCount = this.state.numberOfEvents
             this.setState({ currentLocation: location })
