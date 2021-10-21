@@ -42,7 +42,8 @@ ul {
 }
 
 .event-card {
-    background-color: var(--event-background-color);
+    /* background-color: var(--event-background-color); */
+    background-color: yellowgreen;
 }
 
 .event-card-body {
