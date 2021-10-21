@@ -30,9 +30,6 @@ class App extends Component {
                     allEvents,
                     currentLocation: 'See all cities',
                 })
-
-                //use this array instead of getEvents() on each update
-                this.setState({ allEvents: events })
             }
         })
     }
