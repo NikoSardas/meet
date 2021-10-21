@@ -48,9 +48,9 @@ SCENARIO 2: User can expand an event to see its details
 * Then: the user should see an expanded version of the event
 
 SCENARIO 3: User can collapse an event to hide its details
-Given: an event is expanded and showing details
-When: the user clicks on the event’s ‘Hide Details’ button
-Then: the event should collapse
+* Given: an event is expanded and showing details
+* When: the user clicks on the event’s ‘Hide Details’ button
+* Then: the event should collapse
 
 ## FEATURE 3: SPECIFY NUMBER OF EVENTS
 ### As a user, I should be able to change the number of events displayed, so that I can control the amount of data shown on the app
