@@ -2,10 +2,10 @@
 
 :root {
   --main-bg-color: #f8f9fa;
-  --event-background-color: #ffffff;
-  --main-color: #707070;
-  --event-details-color: #979797;
-  --event-description-color: #6d6d6d;
+  --event-background-color: #f0f0f0;
+  --main-color: #525252;
+  --event-details-color: #858585;
+  --event-description-color: #5c5c5c;
 }
 
 body,
@@ -36,13 +36,32 @@ ul {
   list-style-type: none;
 }
 
+.inputFields{
+  display:flex;
+  width:100%;
+}
+
+.inputFields div{
+  flex-grow: 1;
+  padding:0 5px;
+}
+
 .portfolio-link {
+  width: 40%;
+  font-weight: bold;
+  /* text-align: right; */
+  margin:auto
+}
+
+.portfolio-link a {
   width: 100%;
-  margin: 10px;
-  text-align: center;
   text-decoration: none;
   color: var(--main-color);
-  font-weight: bold;
+  opacity: 50%;
+}
+
+.dropdown-toggle {
+  width: 100%;
 }
 
 .event-card-wrapper {
@@ -129,6 +148,6 @@ ul {
   }
 
   .dropdown-menu {
-    background-color: transparent;
+    background-color: var(--main-bg-color);
   }
 }

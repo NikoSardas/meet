@@ -1,19 +1,21 @@
 //TODO check nprogress
 //TODO find image location
+//TODO loading spinner
+//TODO expand animation
 
 import React, { Component } from 'react'
 
 import EventList from './EventList'
 import CitySearch from './CitySearch'
 import NumberOfEvents from './NumberOfEvents'
-import { extractLocations, getEvents } from './api.js'
+import { extractLocations, getEvents } from '../api.js'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 
-import './App.css'
+import '../styles/App.css'
 
 class App extends Component {
   state = {
@@ -66,20 +68,23 @@ class App extends Component {
       <div className="App">
         <Container>
           <Row>
-            <Navbar expand="xxl">
+            <Navbar expand="nope">
               <Navbar.Brand>
-                <img
-                  alt=""
-                  src="meet_logo.png"
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                />
                 Meet
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="inputFields">
+                {/* <div className="portfolio-link">
+                    <a
+                      className="portfolio-link"
+                      href="https://www.nikosardas.com"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      By Niko Sardas
+                    </a>
+                  </div> */}
                   <div>
                     <NumberOfEvents
                       numberOfEvents={numberOfEvents}
@@ -92,21 +97,12 @@ class App extends Component {
                       updateEvents={this.updateEvents}
                     />
                   </div>
+                
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
           </Row>
           <EventList events={displayedEvents} />
-          <Row>
-            <a
-              className="portfolio-link"
-              href="https://www.nikosardas.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Niko Sardas
-            </a>
-          </Row>
         </Container>
       </div>
     )

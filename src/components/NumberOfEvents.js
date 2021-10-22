@@ -18,7 +18,7 @@ class NumberOfEvents extends Component {
         >
           <Form.Group
             className="number-of-events mt-3"
-            controlId="formBasicEmail"
+            controlId="formRangeSlider"
           >
             <Form.Control
               className="number-slider"

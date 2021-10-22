@@ -14,7 +14,6 @@ class CitySearch extends Component {
   render() {
     const { locations } = this.props
     const { displayedSelection } = this.state
-
     return (
       <div className="CitySearch mt-3 mb-3">
         <Dropdown>

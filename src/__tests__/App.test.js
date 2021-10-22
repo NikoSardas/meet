@@ -1,9 +1,9 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import App from '../App'
-import EventList from '../EventList'
-import CitySearch from '../CitySearch'
-import NumberOfEvents from '../NumberOfEvents'
+import App from '../components/App'
+import EventList from '../components/EventList'
+import CitySearch from '../components/CitySearch'
+import NumberOfEvents from '../components/NumberOfEvents'
 import { mockData } from '../mock-data'
 import { extractLocations, getEvents } from '../api'
 
@@ -12,12 +12,15 @@ describe('<App /> component', () => {
   beforeAll(() => {
     AppWrapper = shallow(<App />)
   })
+
   test('render list of events', () => {
     expect(AppWrapper.find(EventList)).toHaveLength(1)
   })
+
   test('render CitySearch', () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1)
   })
+
   test('Events array length is not greater than numberOfEvents', async () => {
     AppWrapper = shallow(<App />)
     const AppNumberOfEventsState = AppWrapper.state('numberOfEvents')
@@ -35,6 +38,7 @@ describe('<App /> integration', () => {
   afterEach(() => {
     // AppWrapper.unmount()
   })
+
   test('App passes "events" state as a prop to EventList', () => {
     AppWrapper = mount(<App />)
     const AppEventsState = AppWrapper.state('displayedEvents')
@@ -42,6 +46,7 @@ describe('<App /> integration', () => {
     expect(AppWrapper.find(EventList).props().events).toEqual(AppEventsState)
     AppWrapper.unmount()
   })
+
   test('App passes "locations" state as a prop to CitySearch', () => {
     AppWrapper = mount(<App />)
     const AppLocationsState = AppWrapper.state('locations')
@@ -51,6 +56,7 @@ describe('<App /> integration', () => {
     )
     AppWrapper.unmount()
   })
+
   test('get list of events matching the city selected by the user', async () => {
     AppWrapper = mount(<App />)
     const CitySearchWrapper = AppWrapper.find(CitySearch)
@@ -68,6 +74,7 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(eventsToShow)
     AppWrapper.unmount()
   })
+
   test('get list of all events when user selects "See all cities"', async () => {
     AppWrapper = mount(<App />)
     const CitySearchWrapper = AppWrapper.find(CitySearch)
@@ -84,6 +91,7 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('events')).toEqual(eventsToShow)
     AppWrapper.unmount()
   })
+
   test('App passes "numberOfEvents" state as a prop to NumberOfEvents', () => {
     AppWrapper = mount(<App />)
     const AppNumberOfEventsState = AppWrapper.state('numberOfEvents')
@@ -95,6 +103,7 @@ describe('<App /> integration', () => {
     )
     AppWrapper.unmount()
   })
+
   test('App numberOfEvents state equals input from NumberOfEvents', async () => {
     let AppWrapper = mount(<App />)
     AppWrapper.setState({ numberOfEvents: 32 })
@@ -104,9 +113,10 @@ describe('<App /> integration', () => {
     expect(AppWrapper.state('numberOfEvents')).toEqual(1)
     AppWrapper.unmount()
   })
+
   test('Events component displays the correct number of events', async () => {
     let AppWrapper = mount(<App />)
-    const eventsNumber = 5
+    const eventsNumber = 2
     const allEvents = await getEvents()
     AppWrapper.setState({
       displayedEvents: allEvents.slice(0, eventsNumber),
