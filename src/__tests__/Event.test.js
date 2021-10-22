@@ -9,6 +9,7 @@ describe('<Event /> component', () => {
   beforeAll(() => {
     eventWrapper = shallow(<Event event={event} />)
   })
+
   test('Event collapsed by default', () => {
     eventWrapper.setState({
       collapsed: true,
@@ -17,6 +18,7 @@ describe('<Event /> component', () => {
       true
     )
   })
+
   test('Show details on expansion', () => {
     eventWrapper.setState({
       collapsed: false,
@@ -25,6 +27,7 @@ describe('<Event /> component', () => {
       false
     )
   })
+
   test('Toggle state action', () => {
     const collapsedState = eventWrapper.state('collapsed')
     eventWrapper.setState({
@@ -33,6 +36,7 @@ describe('<Event /> component', () => {
     eventWrapper.find('.event-card-body').simulate('click')
     expect(eventWrapper.state('collapsed')).toBe(!collapsedState)
   })
+  
   test('Make sure all details are rendered', () => {
     const classesArray = ['event-summary', 'event-description', 'event-details']
     classesArray.map((eventClass) => {

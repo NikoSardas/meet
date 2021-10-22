@@ -1,11 +1,7 @@
 import React from 'react'
 import { loadFeature, defineFeature } from 'jest-cucumber'
-import { mount, shallow } from 'enzyme'
-
-import CitySearch from '../components/CitySearch'
+import { mount } from 'enzyme'
 import App from '../components/App'
-import { mockData } from '../mock-data'
-import { extractLocations } from '../../src/api.js'
 
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature')
 let AppWrapper
@@ -24,6 +20,7 @@ defineFeature(feature, (test) => {
 
     then('the apps number of events should be 32', () => {
       AppWrapper.update()
+      expect(AppWrapper.find('.event-card-wrapper')).toHaveLength(32)
       expect(AppWrapper.state('displayedEvents')).toHaveLength(32)
     })
   })
@@ -45,6 +42,7 @@ defineFeature(feature, (test) => {
 
     then('the user should see the chosen number of events', () => {
       expect(AppWrapper.state('displayedEvents')).toHaveLength(2)
+      expect(AppWrapper.find('.event-card-wrapper')).toHaveLength(2)
     })
   })
 })

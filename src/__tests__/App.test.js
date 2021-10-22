@@ -21,12 +21,8 @@ describe('<App /> component', () => {
     expect(AppWrapper.find(CitySearch)).toHaveLength(1)
   })
 
-  test('Events array length is not greater than numberOfEvents', async () => {
-    AppWrapper = shallow(<App />)
-    const AppNumberOfEventsState = AppWrapper.state('numberOfEvents')
-    const allEvents = await getEvents()
-    expect(allEvents.length).not.toBeGreaterThan(AppNumberOfEventsState)
-    AppWrapper.unmount()
+  test('render numberOfEvents', () => {
+    expect(AppWrapper.find(NumberOfEvents)).toHaveLength(1)
   })
 })
 

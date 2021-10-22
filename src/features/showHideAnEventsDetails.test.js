@@ -20,6 +20,7 @@ defineFeature(feature, (test) => {
       )
     })
   })
+
   test('User can expand an event to see its details', ({
     given,
     when,
@@ -38,6 +39,7 @@ defineFeature(feature, (test) => {
       )
     })
   })
+
   test('User can collapse an event to hide its details', ({
     given,
     when,
