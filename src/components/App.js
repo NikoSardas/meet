@@ -1,6 +1,4 @@
-//TODO check nprogress
 //TODO find image location
-//TODO loading spinner
 //TODO expand animation
 
 import React, { Component } from 'react'

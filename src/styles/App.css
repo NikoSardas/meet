@@ -101,18 +101,7 @@ ul {
   margin: 5px;
   color: var(--event-description-color);
 }
-
-.loading-spinner {
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-}
-
+ 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type='range'] {
     overflow: hidden;
