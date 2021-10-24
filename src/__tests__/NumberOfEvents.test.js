@@ -5,6 +5,6 @@ import NumberOfEvents from '../components/NumberOfEvents'
 describe('<NumberOfEvents /> component', () => {
   test('textbox rendering', () => {
     let NumberOfEventsWrapper = shallow(<NumberOfEvents />)
-    expect(NumberOfEventsWrapper.find('.numberOfEvents')).toHaveLength(1)
+    expect(NumberOfEventsWrapper.find('.NumberOfEvents')).toHaveLength(1)
   })
 })

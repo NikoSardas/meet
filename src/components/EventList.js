@@ -9,7 +9,7 @@ class EventList extends Component {
       <div className="EventList row">
         {events.map((event) => (
           <div
-            className="col-sm-12 col-md-6 col-lg-4 event-card-wrapper"
+            className="col-sm-12 col-md-6 col-lg-3 event-card-wrapper"
             key={++key}
           >
             <Event event={event} />

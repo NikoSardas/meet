@@ -6,6 +6,7 @@ import React, { Component } from 'react'
 import EventList from './EventList'
 import CitySearch from './CitySearch'
 import NumberOfEvents from './NumberOfEvents'
+
 import { extractLocations, getEvents } from '../api.js'
 
 import Navbar from 'react-bootstrap/Navbar'
@@ -37,6 +38,7 @@ class App extends Component {
       }
     })
   }
+
   componentWillUnmount() {
     this.mounted = false
   }
@@ -60,6 +62,7 @@ class App extends Component {
       displayedEvents: events.slice(0, eventCount),
     })
   }
+
   render() {
     const { displayedEvents, locations, numberOfEvents } = this.state
     return (
@@ -67,13 +70,11 @@ class App extends Component {
         <Container>
           <Row>
             <Navbar expand="nope">
-              <Navbar.Brand>
-                Meet
-              </Navbar.Brand>
+              <Navbar.Brand>Meet</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="inputFields">
-                {/* <div className="portfolio-link">
+                  {/* <div className="portfolio-link">
                     <a
                       className="portfolio-link"
                       href="https://www.nikosardas.com"
@@ -95,7 +96,6 @@ class App extends Component {
                       updateEvents={this.updateEvents}
                     />
                   </div>
-                
                 </Nav>
               </Navbar.Collapse>
             </Navbar>

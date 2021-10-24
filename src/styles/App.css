@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 :root {
-  --main-bg-color: #f8f9fa;
+  /* --main-bg-color: #f8f9fa; */
+  --main-bg-color: #e7e7e7;
   --event-background-color: #f0f0f0;
   --main-color: #525252;
   --event-details-color: #858585;
@@ -36,21 +37,21 @@ ul {
   list-style-type: none;
 }
 
-.inputFields{
-  display:flex;
-  width:100%;
+.inputFields {
+  display: flex;
+  width: 100%;
 }
 
-.inputFields div{
+.inputFields div {
   flex-grow: 1;
-  padding:0 5px;
+  padding: 0 5px;
 }
 
 .portfolio-link {
   width: 40%;
   font-weight: bold;
   /* text-align: right; */
-  margin:auto
+  margin: auto;
 }
 
 .portfolio-link a {
@@ -73,6 +74,7 @@ ul {
 }
 
 .event-card-body {
+  border: 1px solid #9c9c9c;
   cursor: pointer;
 }
 
@@ -101,9 +103,10 @@ ul {
   margin: 5px;
   color: var(--event-description-color);
 }
- 
+
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type='range'] {
+    border: 1px solid var(--main-color);
     overflow: hidden;
     width: 100%;
     -webkit-appearance: none;
@@ -111,8 +114,8 @@ ul {
   }
 
   input[type='range']:focus {
+    border: 1px solid rgb(107, 107, 107);
     background-color: transparent;
-    border: 1px solid gray;
   }
 
   input[type='range']::-webkit-slider-runnable-track {
@@ -139,4 +142,19 @@ ul {
   .dropdown-menu {
     background-color: var(--main-bg-color);
   }
+}
+
+.Alert{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.CitySearch .Alert {
+  top:170px;
+  
+}
+
+.NumberOfEvents .Alert {
+  top:90px;
 }

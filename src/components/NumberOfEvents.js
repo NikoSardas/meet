@@ -1,16 +1,25 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
+import { ErrorAlert } from './Alert'
 
 class NumberOfEvents extends Component {
+  state = {
+    ErrorText: '',
+  }
+
   changeEventsNumber(eventsNumber) {
-    if (eventsNumber > 64) eventsNumber = 64
-    if (eventsNumber < 1) eventsNumber = 1
+    if (eventsNumber > 44)
+      this.setState({ ErrorText: 'Number is larger than ' + 44 })
+    if (eventsNumber < 22)
+      this.setState({ ErrorText: 'Number is smaller than ' + 22 })
+    if (eventsNumber > 22 && eventsNumber < 44) this.setState({ ErrorText: '' })
     this.props.updateEvents(undefined, eventsNumber)
   }
   render() {
     const { numberOfEvents } = this.props
     return (
-      <div className="numberOfEvents">
+      <div className="NumberOfEvents">
+        <ErrorAlert className="error-alert alert" text={this.state.ErrorText} />
         <Form
           onSubmit={(e) => {
             e.preventDefault()
