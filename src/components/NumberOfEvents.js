@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
-import { ErrorAlert } from './Alert'
+// import { ErrorAlert } from './Alert'
 
 class NumberOfEvents extends Component {
   state = {
@@ -19,7 +19,7 @@ class NumberOfEvents extends Component {
     const { numberOfEvents } = this.props
     return (
       <div className="NumberOfEvents">
-        <ErrorAlert className="error-alert alert" text={this.state.ErrorText} />
+        {/* <ErrorAlert className="error-alert alert" text={this.state.ErrorText} /> */}
         <Form
           onSubmit={(e) => {
             e.preventDefault()

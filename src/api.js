@@ -9,6 +9,7 @@ export const extractLocations = (events) => {
   const locations = [...new Set(extractLocations)]
   return locations
 }
+
 export const getEvents = async () => {
   NProgress.start()
 
@@ -16,13 +17,17 @@ export const getEvents = async () => {
     NProgress.done()
     return mockData
   }
+
+  if (!navigator.onLine) {
+    const data = localStorage.getItem('lastEvents')
+    NProgress.done()
+    return data ? JSON.parse(data).events : []
+  }
+
   const token = await getAccessToken()
   if (token) {
     removeQuery()
-    const url =
-      'https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
-      '/' +
-      token
+    const url = `https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/get-events/${token}`
     const result = await axios.get(url)
     if (result.data) {
       var locations = extractLocations(result.data.events)
@@ -33,6 +38,7 @@ export const getEvents = async () => {
     return result.data.events
   }
 }
+
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token')
   const tokenCheck = accessToken && (await checkToken(accessToken))
@@ -52,7 +58,8 @@ export const getAccessToken = async () => {
   }
   return accessToken
 }
-const checkToken = async (accessToken) => {
+
+export const checkToken = async (accessToken) => {
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
   )
@@ -61,6 +68,7 @@ const checkToken = async (accessToken) => {
 
   return result
 }
+
 const removeQuery = () => {
   if (window.history.pushState && window.location.pathname) {
     var newurl =
@@ -74,12 +82,11 @@ const removeQuery = () => {
     window.history.pushState('', '', newurl)
   }
 }
+
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code)
   const { access_token } = await fetch(
-    'https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/token' +
-      '/' +
-      encodeCode
+    `https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/token/${encodeCode}`
   )
     .then((res) => {
       return res.json()

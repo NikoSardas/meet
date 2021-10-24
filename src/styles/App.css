@@ -144,17 +144,16 @@ ul {
   }
 }
 
-.Alert{
+.Alert {
   position: absolute;
   text-align: center;
   width: 100%;
 }
 
 .CitySearch .Alert {
-  top:170px;
-  
+  top: 170px;
 }
 
 .NumberOfEvents .Alert {
-  top:90px;
+  top: 90px;
 }
