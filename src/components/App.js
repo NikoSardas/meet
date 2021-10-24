@@ -1,19 +1,17 @@
-//TODO find image location
-//TODO expand animation
-
 import React, { Component } from 'react'
 
 import EventList from './EventList'
 import CitySearch from './CitySearch'
 import NumberOfEvents from './NumberOfEvents'
-
 import WelcomeScreen from '../WelcomeScreen.jsx'
+
 import { getEvents, extractLocations, checkToken, getAccessToken } from '../api'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import Button from 'react-bootstrap/Button'
 
 import '../styles/App.css'
 // import logo from './meet-app-512.png'
@@ -40,6 +38,7 @@ class App extends Component {
 
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
+        console.log('getEvents', events)
         const allEvents = events
 
         if (this.mounted) {
@@ -81,23 +80,31 @@ class App extends Component {
       displayedEvents: events.slice(0, eventCount),
     })
   }
-
+  logOut = () => {
+    localStorage.setItem('access_token', '')
+    this.componentDidMount()
+  }
   render() {
-    const { displayedEvents, locations, numberOfEvents, showWelcomeScreen } =
-      this.state
-    if (!showWelcomeScreen) return <div className="App" />
+    const { displayedEvents, locations, numberOfEvents } = this.state
+
+    if (this.state.showWelcomeScreen === undefined) {
+      return <div className="App" />
+    }
     return (
       <div className="App">
         <Container>
           <Row>
-            <WarningAlert
-              text={!navigator.onLine ? 'App is offline' : ''}
-            ></WarningAlert>
             <Navbar expand="nope">
               <Navbar.Brand>Meet</Navbar.Brand>
+              <WarningAlert
+                text={!navigator.onLine ? 'No internet connection' : ''}
+              ></WarningAlert>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="inputFields">
+                  <Button className="logout-button mt-3 mb-3" onClick={this.logOut}>
+                    Logout
+                  </Button>
                   <div>
                     <NumberOfEvents
                       numberOfEvents={numberOfEvents}
@@ -115,13 +122,13 @@ class App extends Component {
             </Navbar>
           </Row>
           <EventList events={displayedEvents} />
-          <WelcomeScreen
-            showWelcomeScreen={showWelcomeScreen}
-            getAccessToken={() => {
-              getAccessToken()
-            }}
-          />
         </Container>
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken()
+          }}
+        />
       </div>
     )
   }

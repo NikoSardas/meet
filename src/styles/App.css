@@ -104,6 +104,13 @@ ul {
   color: var(--event-description-color);
 }
 
+.logout-button {
+  background-color: transparent;
+  color: var(--main-color);
+  width: 40px;
+  border: none;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type='range'] {
     border: 1px solid var(--main-color);
@@ -145,15 +152,7 @@ ul {
 }
 
 .Alert {
-  position: absolute;
+  /* position: absolute;
   text-align: center;
-  width: 100%;
-}
-
-.CitySearch .Alert {
-  top: 170px;
-}
-
-.NumberOfEvents .Alert {
-  top: 90px;
+  top:5px; */
 }

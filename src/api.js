@@ -1,6 +1,6 @@
 import { mockData } from './mock-data'
 import axios from 'axios'
-import NProgress from 'nprogress' //TODO is this working?
+import NProgress from 'nprogress'
 
 import './styles/nprogress.css'
 
@@ -27,7 +27,10 @@ export const getEvents = async () => {
   const token = await getAccessToken()
   if (token) {
     removeQuery()
-    const url = `https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/get-events/${token}`
+    const url =
+      'https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
+      '/' +
+      token
     const result = await axios.get(url)
     if (result.data) {
       var locations = extractLocations(result.data.events)
@@ -47,6 +50,7 @@ export const getAccessToken = async () => {
     await localStorage.removeItem('access_token')
     const searchParams = new URLSearchParams(window.location.search)
     const code = await searchParams.get('code')
+
     if (!code) {
       const results = await axios.get(
         'https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url'
@@ -86,7 +90,9 @@ const removeQuery = () => {
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code)
   const { access_token } = await fetch(
-    `https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/token/${encodeCode}`
+    `https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/token` +
+      '/' +
+      encodeCode
   )
     .then((res) => {
       return res.json()
