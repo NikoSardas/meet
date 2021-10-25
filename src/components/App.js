@@ -14,7 +14,7 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 
 import '../styles/App.css'
-import logo from '/public/wickedbackground'
+import logo from './wickedBackgrounds.svg'
 import { WarningAlert } from './Alert'
 
 class App extends Component {
