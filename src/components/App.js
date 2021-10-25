@@ -7,15 +7,26 @@ import WelcomeScreen from '../WelcomeScreen.jsx'
 
 import { getEvents, extractLocations, checkToken, getAccessToken } from '../api'
 
+import { WarningAlert } from './Alert'
+
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 
+import {
+  ScatterChart,
+  Scatter,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts'
+
+import logo from './wickedbackground.svg'
 import '../styles/App.css'
-import logo from './wickedbackgrounds.svg'
-import { WarningAlert } from './Alert'
 
 class App extends Component {
   state = {
@@ -34,22 +45,23 @@ class App extends Component {
     const searchParams = new URLSearchParams(window.location.search)
     const code = searchParams.get('code')
     console.log(accessToken, isTokenValid, searchParams, code)
+
     this.setState({ showWelcomeScreen: !(code || isTokenValid) })
 
     if ((code || isTokenValid) && this.mounted) {
-      getEvents().then((events) => {
-        console.log('getEvents', events)
-        const allEvents = events
+    getEvents().then((events) => {
+      console.log('getEvents', events)
+      const allEvents = events
 
-        if (this.mounted) {
-          this.setState({
-            displayedEvents: events.slice(0, this.state.numberOfEvents),
-            locations: extractLocations(events),
-            allEvents,
-            currentLocation: 'See all cities',
-          })
-        }
-      })
+      if (this.mounted) {
+        this.setState({
+          displayedEvents: events.slice(0, this.state.numberOfEvents),
+          locations: extractLocations(events),
+          allEvents,
+          currentLocation: 'See all cities',
+        })
+      }
+    })
     }
   }
 
@@ -82,14 +94,25 @@ class App extends Component {
   }
 
   logOut = () => {
-    localStorage.setItem('access_token', '')
+    localStorage.removeItem('access_token')
     this.componentDidMount()
+  }
+
+  getData = () => {
+    const { locations, displayedEvents } = this.state
+    const data = locations.map((location) => {
+      const number = displayedEvents.filter(
+        (event) => event.location === location
+      ).length
+      const city = location.split(', ').shift()
+      return { city, number }
+    })
+    return data
   }
 
   render() {
     const { displayedEvents, locations, numberOfEvents, showWelcomeScreen } =
       this.state
-
     if (showWelcomeScreen === undefined) {
       return <div className="App" />
     }
@@ -98,8 +121,10 @@ class App extends Component {
         <Container>
           <Row>
             <Navbar expand="nope">
-              <svg src={logo}></svg>
-              <Navbar.Brand>Meet</Navbar.Brand>
+              <div>
+                <img className="navbar-logo" src={logo} />
+                <Navbar.Brand className="meet-logo">Meet</Navbar.Brand>
+              </div>
               <WarningAlert
                 text={!navigator.onLine ? 'No internet connection' : ''}
               ></WarningAlert>
@@ -107,31 +132,56 @@ class App extends Component {
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="inputFields">
                   <Button
-                    className="protfolio-link mb-3"
+                    className="portfolio-link"
                     onClick={() => {
-                      window.open('nikosardas.com/')
+                      window.open('https://nikosardas.github.io/meet')
                     }}
                   >
-                    Niko Sardas
+                    By Niko Sardas
                   </Button>
-                  <Button className="logout-button mb-3" onClick={this.logOut}>
+                  <Button className="logout-button mb-1" onClick={this.logOut}>
                     Logout
                   </Button>
-                  <div>
-                    <NumberOfEvents
-                      numberOfEvents={numberOfEvents}
-                      updateEvents={this.updateEvents}
-                    />
-                  </div>
-                  <div>
-                    <CitySearch
-                      locations={locations}
-                      updateEvents={this.updateEvents}
-                    />
-                  </div>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
+          {/* </Row> */}
+          <ResponsiveContainer height={400}>
+            <ScatterChart
+              width={400}
+              height={400}
+              margin={{
+                top: 20,
+                right: 20,
+                bottom: 20,
+                left: 20,
+              }}
+            >
+              <CartesianGrid />
+              <XAxis type="category" dataKey="city" name="city" />
+              <YAxis
+                type="number"
+                dataKey="number"
+                name="number of events"
+                allowDecimals={false}
+              />
+              <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+              <Scatter data={this.getData()} fill="#8884d8" />
+            </ScatterChart>
+          </ResponsiveContainer>
+          {/* <Row> */}
+            <div className="number-of-events-wrapper">
+              <NumberOfEvents
+                numberOfEvents={numberOfEvents}
+                updateEvents={this.updateEvents}
+              />
+            </div>
+            <div className="city-search-wrapper">
+              <CitySearch
+                locations={locations}
+                updateEvents={this.updateEvents}
+              />
+            </div>
           </Row>
           <EventList events={displayedEvents} />
         </Container>

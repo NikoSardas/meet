@@ -40,9 +40,15 @@ ul {
   max-width: 100%;
   /* overflow: hidden; */
 }
+
+.navbar-logo {
+  width: 50px;
+}
+
 .inputFields {
   display: flex;
   width: 100%;
+  /* align-items: flex-end; */
 }
 
 .inputFields div {
@@ -102,23 +108,21 @@ ul {
   color: var(--event-description-color);
 }
 
-.portfolio-link {
-  font-weight: bold;
-  margin: auto;
-}
-
 .logout-button,
 .portfolio-link {
   background-color: transparent;
   color: var(--main-color);
-  width: 100px;
-  border: none;
+  width: 150px;
+  padding:2px !important;
+  text-align: center;
+  border: 1px solid var(--event-details-color);
 }
 
 .logout-button:hover,
 .portfolio-link:hover {
   background-color: var(--main-color);
   color: var(--event-background-color);
+  border: none;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
@@ -162,7 +166,14 @@ ul {
 }
 
 .Alert {
- position: absolute;
+  width:50%;
+  position: absolute;
+  top: 5px;
+  margin: auto;
+  left:0;
+  right:0;
+}
+
+.Alert p{
   text-align: center;
-  top:5px; 
- }  
+}

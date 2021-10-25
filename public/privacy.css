@@ -7,13 +7,15 @@
   --event-details-color: #858585;
   --event-description-color: #5c5c5c;
 }
+
 body, html {
   height: 100%;
 }
 
 body {
+  user-select: none;
   font-family: 'Roboto', sans-serif;
-  width: 80%;
+  width: 100%;
   height: 100%;
   color: var(--main-color);
   background-color: var(--main-bg-color);
@@ -22,13 +24,16 @@ body {
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  margin:auto;
 }
 
 .privacy-back-button {
+  font-size: medium;
   background-color: transparent;
   color: var(--main-color);
   width: 100px;
   border: none;
+  font-weight: bold;
 }
 
 .privacy-back-button:hover {
