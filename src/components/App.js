@@ -14,7 +14,7 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 
 import '../styles/App.css'
-// import logo from './meet-app-512.png'
+import logo from './wickedBackgrounds.svg'
 import { WarningAlert } from './Alert'
 
 class App extends Component {
@@ -33,7 +33,7 @@ class App extends Component {
     const isTokenValid = (await checkToken(accessToken)).error ? false : true
     const searchParams = new URLSearchParams(window.location.search)
     const code = searchParams.get('code')
-
+    console.log(accessToken, isTokenValid, searchParams, code)
     this.setState({ showWelcomeScreen: !(code || isTokenValid) })
 
     if ((code || isTokenValid) && this.mounted) {
@@ -80,14 +80,17 @@ class App extends Component {
       displayedEvents: events.slice(0, eventCount),
     })
   }
+
   logOut = () => {
     localStorage.setItem('access_token', '')
     this.componentDidMount()
   }
-  render() {
-    const { displayedEvents, locations, numberOfEvents } = this.state
 
-    if (this.state.showWelcomeScreen === undefined) {
+  render() {
+    const { displayedEvents, locations, numberOfEvents, showWelcomeScreen } =
+      this.state
+
+    if (showWelcomeScreen === undefined) {
       return <div className="App" />
     }
     return (
@@ -95,6 +98,7 @@ class App extends Component {
         <Container>
           <Row>
             <Navbar expand="nope">
+              <svg src={logo}></svg>
               <Navbar.Brand>Meet</Navbar.Brand>
               <WarningAlert
                 text={!navigator.onLine ? 'No internet connection' : ''}
@@ -102,7 +106,15 @@ class App extends Component {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="inputFields">
-                  <Button className="logout-button mt-3 mb-3" onClick={this.logOut}>
+                  <Button
+                    className="protfolio-link mb-3"
+                    onClick={() => {
+                      window.open('nikosardas.com/')
+                    }}
+                  >
+                    Niko Sardas
+                  </Button>
+                  <Button className="logout-button mb-3" onClick={this.logOut}>
                     Logout
                   </Button>
                   <div>
@@ -124,7 +136,7 @@ class App extends Component {
           <EventList events={displayedEvents} />
         </Container>
         <WelcomeScreen
-          showWelcomeScreen={this.state.showWelcomeScreen}
+          showWelcomeScreen={showWelcomeScreen}
           getAccessToken={() => {
             getAccessToken()
           }}

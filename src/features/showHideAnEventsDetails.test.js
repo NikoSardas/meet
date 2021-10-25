@@ -31,7 +31,7 @@ defineFeature(feature, (test) => {
     })
     when('user clicks the ‘Show Details’ button on an event', () => {
       AppWrapper.update()
-      AppWrapper.find('.event-card-body').hostNodes().first().simulate('click')
+        AppWrapper.find('.event-card-body').hostNodes().first().simulate('click')
     })
     then('the user should see an expanded version of the event', () => {
       expect(AppWrapper.find('.d-none').hostNodes()).toHaveLength(
