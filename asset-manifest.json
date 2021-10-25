@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/meet/static/css/main.426f2214.chunk.css",
-    "main.js": "/meet/static/js/main.f3a9f55d.chunk.js",
-    "main.js.map": "/meet/static/js/main.f3a9f55d.chunk.js.map",
+    "main.css": "/meet/static/css/main.38b918d1.chunk.css",
+    "main.js": "/meet/static/js/main.834665ef.chunk.js",
+    "main.js.map": "/meet/static/js/main.834665ef.chunk.js.map",
     "runtime-main.js": "/meet/static/js/runtime-main.dcc4faf5.js",
     "runtime-main.js.map": "/meet/static/js/runtime-main.dcc4faf5.js.map",
     "static/js/2.bc7ea24d.chunk.js": "/meet/static/js/2.bc7ea24d.chunk.js",
@@ -12,14 +12,14 @@
     "index.html": "/meet/index.html",
     "service-worker.js": "/meet/service-worker.js",
     "service-worker.js.map": "/meet/service-worker.js.map",
-    "static/css/main.426f2214.chunk.css.map": "/meet/static/css/main.426f2214.chunk.css.map",
+    "static/css/main.38b918d1.chunk.css.map": "/meet/static/css/main.38b918d1.chunk.css.map",
     "static/js/2.bc7ea24d.chunk.js.LICENSE.txt": "/meet/static/js/2.bc7ea24d.chunk.js.LICENSE.txt",
     "static/media/wickedbackground.0ed0803d.svg": "/meet/static/media/wickedbackground.0ed0803d.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.dcc4faf5.js",
     "static/js/2.bc7ea24d.chunk.js",
-    "static/css/main.426f2214.chunk.css",
-    "static/js/main.f3a9f55d.chunk.js"
+    "static/css/main.38b918d1.chunk.css",
+    "static/js/main.834665ef.chunk.js"
   ]
 }
