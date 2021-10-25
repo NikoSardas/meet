@@ -7,11 +7,13 @@
   --event-details-color: #858585;
   --event-description-color: #5c5c5c;
 }
+
 body, html {
   height: 100%;
 }
 
 body {
+  user-select: none;
   font-family: 'Roboto', sans-serif;
   width: 100%;
   height: 100%;
