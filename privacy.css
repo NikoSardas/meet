@@ -7,6 +7,9 @@
   --event-details-color: #858585;
   --event-description-color: #5c5c5c;
 }
+body, html {
+  height: 100%;
+}
 
 body {
   font-family: 'Roboto', sans-serif;
