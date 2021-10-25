@@ -22,6 +22,7 @@ body {
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  margin:auto;
 }
 
 .privacy-back-button {
@@ -29,6 +30,7 @@ body {
   color: var(--main-color);
   width: 100px;
   border: none;
+  font-weight: bold;
 }
 
 .privacy-back-button:hover {
