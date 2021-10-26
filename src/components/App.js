@@ -33,29 +33,25 @@ class App extends Component {
   async componentDidMount() {
     this.mounted = true
     const accessToken = localStorage.getItem('access_token')
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true //original
-    // const isTokenValid = (await checkToken(accessToken)).error ? true : false
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true
     const searchParams = new URLSearchParams(window.location.search)
     const code = searchParams.get('code')
-    // console.log('accessToken', accessToken)
-    // console.log('isTokenValid', isTokenValid)
-    // console.log('searchParams', searchParams)
-    // console.log('code', code)
     this.setState({ showWelcomeScreen: !(code || isTokenValid) })
 
     if ((code || isTokenValid) && this.mounted) {
-    getEvents().then((events) => {
-      console.log('getEvents events', events)
-      const allEvents = events
-      if (this.mounted) {
-        this.setState({
-          displayedEvents: events.slice(0, this.state.numberOfEvents),
-          locations: extractLocations(events),
-          allEvents,
-          currentLocation: 'See all cities',
-        })
-      }
-    })
+      console.log('before getEvents')
+      getEvents().then((events) => {
+        console.log('events', events)
+        const allEvents = events
+        if (this.mounted) {
+          this.setState({
+            displayedEvents: events.slice(0, this.state.numberOfEvents),
+            locations: extractLocations(events),
+            allEvents,
+            currentLocation: 'See all cities',
+          })
+        }
+      })
     }
   }
 
@@ -95,9 +91,9 @@ class App extends Component {
   render() {
     const { displayedEvents, locations, numberOfEvents, showWelcomeScreen } =
       this.state
-    // if (showWelcomeScreen === undefined) {
-    //   return <div className="App" />
-    // }
+    if (showWelcomeScreen === undefined) {
+      return <div className="App" />
+    }
     return (
       <div className="App">
         <Container>
@@ -107,14 +103,14 @@ class App extends Component {
             ></WarningAlert>
             <Navbar expand="nope">
               <div>
-                <img className="navbar-logo" alt="Logo" src={logo} />
+                <img className="navbar-logo" alt="logo" src={logo} />
                 <Navbar.Brand className="meet-logo">Meet</Navbar.Brand>
               </div>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="inputFields">
-                  <div className="buttons">
-                    {/* <Button
+                  {/* <div className="buttons">
+                    <Button
                       variant="outline-secondary"
                       className="portfolio-link mt-2"
                       onClick={() => {
@@ -122,15 +118,15 @@ class App extends Component {
                       }}
                     >
                       By Niko Sardas
-                    </Button> */}
-                    <Button
-                      variant="outline-secondary"
-                      className="logout-button mt-2"
-                      onClick={this.logOut}
-                    >
-                      Logout
-                    </Button>
-                  </div>
+                    </Button>*/}
+                  <Button
+                    variant="outline-secondary"
+                    className="logout-button mt-2"
+                    onClick={this.logOut}
+                  >
+                    Logout
+                  </Button>
+                  {/* </div>  */}
                   <div className="inputs">
                     <div className="number-of-events-wrapper">
                       <NumberOfEvents
@@ -149,17 +145,17 @@ class App extends Component {
               </Navbar.Collapse>
             </Navbar>
           </Row>
-          {/* <Row>
-            <Charts />
-          </Row> */}
+          <Row>
+            <Charts locations={locations} displayedEvents={displayedEvents} />
+          </Row>
           <EventList events={displayedEvents} />
         </Container>
-        {/* <WelcomeScreen
+        <WelcomeScreen
           showWelcomeScreen={showWelcomeScreen}
           getAccessToken={() => {
             getAccessToken()
           }}
-        /> */}
+        />
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import './styles/WelcomeScreen.css'
+import logo from './wickedbackground.svg'
 
 function WelcomeScreen(props) {
   return props.showWelcomeScreen ? (
@@ -26,9 +27,10 @@ function WelcomeScreen(props) {
         <span></span>
         <span></span>
       </div>
-
-      <h1>Welcome to the Meet app</h1>
-
+      <div className="login-head">
+        <img className="logo-image" alt="Logo" src={logo} />
+        <h1>Welcome to the Meet app</h1>
+      </div>
       <div className="button_cont" align="center">
         <div className="google-btn">
           <button
