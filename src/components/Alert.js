@@ -21,19 +21,19 @@ class Alert extends Component {
   }
 }
 
-class InfoAlert extends Alert {
-  constructor(props) {
-    super(props);
-    this.color = 'blue';
-  }
-}
+// class InfoAlert extends Alert {
+//   constructor(props) {
+//     super(props);
+//     this.color = 'blue';
+//   }
+// }
 
-class ErrorAlert extends Alert {
-  constructor(props) {
-    super(props);
-    this.color = 'red';
-  }
-}
+// class ErrorAlert extends Alert {
+//   constructor(props) {
+//     super(props);
+//     this.color = 'red';
+//   }
+// }
 
 class WarningAlert extends Alert {
   constructor(props) {

@@ -1,5 +1,6 @@
 import React from 'react'
 import './styles/WelcomeScreen.css'
+
 function WelcomeScreen(props) {
   return props.showWelcomeScreen ? (
     <div className="WelcomeScreen">
@@ -25,8 +26,9 @@ function WelcomeScreen(props) {
         <span></span>
         <span></span>
       </div>
+
       <h1>Welcome to the Meet app</h1>
-      <h4></h4>
+
       <div className="button_cont" align="center">
         <div className="google-btn">
           <button
@@ -47,6 +49,7 @@ function WelcomeScreen(props) {
           </button>
         </div>
       </div>
+
       <a
         href="https://NikoSardas.github.io/meet/privacy.html"
         rel="nofollow noopener"
