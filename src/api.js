@@ -3,6 +3,7 @@ import axios from 'axios'
 import NProgress from 'nprogress'
 
 import './styles/nprogress.css'
+const config = require('./config')
 
 export const extractLocations = (events) => {
   const extractLocations = events.map((event) => event.location)
@@ -27,13 +28,10 @@ export const getEvents = async () => {
   const token = await getAccessToken()
   if (token) {
     removeQuery()
-    const url =
-      'https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/get-events' +
-      '/' +
-      token
+    const url = config.GET_EVENTS + '/' + token
     const result = await axios.get(url)
     if (result.data) {
-      console.log(result);
+      console.log(result)
       var locations = extractLocations(result.data.events)
       localStorage.setItem('lastEvents', JSON.stringify(result.data))
       localStorage.setItem('locations', JSON.stringify(locations))
@@ -53,9 +51,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get('code')
 
     if (!code) {
-      const results = await axios.get(
-        'https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url'
-      )
+      const results = await axios.get(config.GET_AUTH_URL)
       const { authUrl } = results.data
       return (window.location.href = authUrl)
     }
@@ -65,9 +61,7 @@ export const getAccessToken = async () => {
 }
 
 export const checkToken = async (accessToken) => {
-  const result = await fetch(
-    `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
-  )
+  const result = await fetch(`${config.ACCESS_TOKEN + accessToken}`)
     .then((res) => res.json())
     .catch((error) => error.json())
 
@@ -90,11 +84,7 @@ const removeQuery = () => {
 
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code)
-  const { access_token } = await fetch(
-    `https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/token` +
-      '/' +
-      encodeCode
-  )
+  const { access_token } = await fetch(config.API_TOKEN + '/' + encodeCode)
     .then((res) => {
       return res.json()
     })

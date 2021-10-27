@@ -1,12 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Form from 'react-bootstrap/Form'
-// import { ErrorAlert } from './Alert'
 
-class NumberOfEvents extends Component {
-  state = {
-    ErrorText: '',
-  }
-
+class NumberOfEvents extends PureComponent {
   changeEventsNumber(eventsNumber) {
     if (eventsNumber > 44)
       this.setState({ ErrorText: 'Number is larger than ' + 44 })
@@ -19,7 +14,6 @@ class NumberOfEvents extends Component {
     const { numberOfEvents } = this.props
     return (
       <div className="NumberOfEvents">
-        {/* <ErrorAlert className="error-alert alert" text={this.state.ErrorText} /> */}
         <Form
           onSubmit={(e) => {
             e.preventDefault()

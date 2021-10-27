@@ -7,8 +7,10 @@ const isLocalhost = Boolean(
 )
 
 export function register(config) {
+  console.log('register config', config)
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href)
+    console.log('function register(config) publicUrl', config)
     if (publicUrl.origin !== window.location.origin) {
       return
     }
@@ -17,6 +19,7 @@ export function register(config) {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
 
       if (isLocalhost) {
+        console.log('isLocalhost', isLocalhost, 'swUrl', swUrl)
         checkValidServiceWorker(swUrl, config)
         navigator.serviceWorker.ready.then(() => {
           console.log(
@@ -35,12 +38,14 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
+      console.log('registerValidSW registration', registration)
       registration.onupdatefound = () => {
         const installingWorker = registration.installing
         if (installingWorker == null) {
           return
         }
         installingWorker.onstatechange = () => {
+          console.log('installingWorker.state', installingWorker.state)
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
               console.log(
@@ -71,12 +76,17 @@ function checkValidServiceWorker(swUrl, config) {
     headers: { 'Service-Worker': 'script' },
   })
     .then((response) => {
+      console.log('checkValidServiceWorker response', response)
       const contentType = response.headers.get('content-type')
       if (
         response.status === 404 ||
         (contentType != null && contentType.indexOf('javascript') === -1)
       ) {
         navigator.serviceWorker.ready.then((registration) => {
+          console.log(
+            'navigator.serviceWorker.ready.then((registration)',
+            registration
+          )
           registration.unregister().then(() => {
             window.location.reload()
           })
@@ -93,6 +103,7 @@ function checkValidServiceWorker(swUrl, config) {
 }
 
 export function unregister() {
+  console.log("('serviceWorker' in navigator)", 'serviceWorker' in navigator)
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
       .then((registration) => {

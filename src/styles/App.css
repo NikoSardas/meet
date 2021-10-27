@@ -18,6 +18,10 @@ body {
   user-select: none;
 }
 
+img {
+  -webkit-user-drag: none;
+}
+
 input,
 nav textarea,
 button,
@@ -44,39 +48,21 @@ ul {
   width: 50px;
 }
 
+.nav-toggle:active {
+  background-color: var(--main-color);
+  color: var(--main-bg-color);
+}
+
+
 .buttons {
   display: flex;
   justify-content: space-between;
-}
-
-.logout-button,
-.portfolio-link {
-  border: none;
-}
-
-.portfolio-link {
-  border: none;
-}
-
-.inputFields {
-  display: flex;
-  width: 100%;
-}
-
-.dropdown {
 }
 
 .suggestions {
   width: 100%;
   margin: auto;
   overflow: hidden;
-}
-
-.inputFields div {
-  flex-grow: 1;
-}
-
-.displayed-selection {
 }
 
 .dropdown-toggle {

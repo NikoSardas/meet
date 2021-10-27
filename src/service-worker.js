@@ -23,8 +23,8 @@ registerRoute(({ request, url }) => {
 }, createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html'))
 
 registerRoute(
-  ({ url }) =>
-    url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  ({ url }) => console.log('registerRoute url', url),
+  url.origin === self.location.origin && url.pathname.endsWith('.png'),
   new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [new ExpirationPlugin({ maxEntries: 50 })],
@@ -32,6 +32,7 @@ registerRoute(
 )
 
 self.addEventListener('message', (event) => {
+  console.log('self.addEventListener(message, (event)', event)
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting()
   }

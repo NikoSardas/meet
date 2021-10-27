@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-// import React, { Component, PureComponent } from 'react'
 
 import EventList from './EventList'
 import CitySearch from './CitySearch'
 import NumberOfEvents from './NumberOfEvents'
-import Charts from './Charts'
+import Chart from './Chart'
+import EventGenre from './EventGenre'
 import WelcomeScreen from '../WelcomeScreen.jsx'
 
 import { getEvents, extractLocations, checkToken, getAccessToken } from '../api'
@@ -32,27 +32,25 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true
-    const accessToken = localStorage.getItem('access_token')
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true
-    const searchParams = new URLSearchParams(window.location.search)
-    const code = searchParams.get('code')
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) })
+    // const accessToken = localStorage.getItem('access_token')
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true
+    // const searchParams = new URLSearchParams(window.location.search)
+    // const code = searchParams.get('code')
+    // this.setState({ showWelcomeScreen: !(code || isTokenValid) })
 
-    if ((code || isTokenValid) && this.mounted) {
-      console.log('before getEvents')
-      getEvents().then((events) => {
-        console.log('events', events)
-        const allEvents = events
-        if (this.mounted) {
-          this.setState({
-            displayedEvents: events.slice(0, this.state.numberOfEvents),
-            locations: extractLocations(events),
-            allEvents,
-            currentLocation: 'See all cities',
-          })
-        }
-      })
-    }
+    // if ((code || isTokenValid) && this.mounted) {
+    getEvents().then((events) => {
+      const allEvents = events
+      if (this.mounted) {
+        this.setState({
+          displayedEvents: events.slice(0, this.state.numberOfEvents),
+          locations: extractLocations(events),
+          allEvents,
+          currentLocation: 'See all cities',
+        })
+      }
+    })
+    // }
   }
 
   componentWillUnmount() {
@@ -91,9 +89,9 @@ class App extends Component {
   render() {
     const { displayedEvents, locations, numberOfEvents, showWelcomeScreen } =
       this.state
-    if (showWelcomeScreen === undefined) {
-      return <div className="App" />
-    }
+    // if (showWelcomeScreen === undefined) {
+    //   return <div className="App" />
+    // }
     return (
       <div className="App">
         <Container>
@@ -108,54 +106,58 @@ class App extends Component {
               </div>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="inputFields">
-                  {/* <div className="buttons">
+                <Nav>
+                  <div className="buttons">
+                    {/* <Button
+                variant="outline-secondary"
+                className="portfolio-link mt-2"
+                onClick={() => {
+                  window.open('http://www.nikosardas.com/')
+                }}
+              >
+                By Niko Sardas
+              </Button> */}
                     <Button
                       variant="outline-secondary"
-                      className="portfolio-link mt-2"
-                      onClick={() => {
-                        window.open('http://www.nikosardas.com/')
-                      }}
+                      className="logout-button mt-2"
+                      onClick={this.logOut}
                     >
-                      By Niko Sardas
-                    </Button>*/}
-                  <Button
-                    variant="outline-secondary"
-                    className="logout-button mt-2"
-                    onClick={this.logOut}
-                  >
-                    Logout
-                  </Button>
-                  {/* </div>  */}
-                  <div className="inputs">
-                    <div className="number-of-events-wrapper">
-                      <NumberOfEvents
-                        numberOfEvents={numberOfEvents}
-                        updateEvents={this.updateEvents}
-                      />
-                    </div>
-                    <div className="city-search-wrapper">
-                      <CitySearch
-                        locations={locations}
-                        updateEvents={this.updateEvents}
-                      />
-                    </div>
+                      Logout
+                    </Button>
                   </div>
+                  <Chart
+                    locations={locations}
+                    displayedEvents={displayedEvents}
+                  />
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
           </Row>
-          <Row>
-            <Charts locations={locations} displayedEvents={displayedEvents} />
+          <Row className="controllers">
+            <div className="inputs">
+              <div className="number-of-events-wrapper">
+                <NumberOfEvents
+                  numberOfEvents={numberOfEvents}
+                  updateEvents={this.updateEvents}
+                />
+              </div>
+              <div className="city-search-wrapper">
+                <CitySearch
+                  locations={locations}
+                  updateEvents={this.updateEvents}
+                />
+              </div>
+            </div>
+            <EventGenre className="event-genre" events={displayedEvents} />
           </Row>
           <EventList events={displayedEvents} />
         </Container>
-        <WelcomeScreen
+        {/* <WelcomeScreen
           showWelcomeScreen={showWelcomeScreen}
           getAccessToken={() => {
             getAccessToken()
           }}
-        />
+        /> */}
       </div>
     )
   }
