@@ -1,8 +1,26 @@
 # meet
 a serverless, progressive web application (PWA) with React using a test-driven
 development (TDD) technique.
+
+![Capture](https://user-images.githubusercontent.com/89710667/139113180-e4beab2b-0673-419e-b903-cf29d9f6dd8e.PNG)
+
 ## Description
-The application uses the Google Calendar API to fetch nupcoming events.
+A serverless, progressive web application (PWA) with React using a
+test-driven development (TDD) technique. The application uses the Google
+Calendar API to fetch upcoming events.
+
+
+## Features
+* Filter events by city.
+* Show/hide event details.
+* Specify number of events.
+* Use the app when offline.
+* Add an app shortcut to the home screen.
+* View a chart showing the number of upcoming events by city.
+
+![Capture2](https://user-images.githubusercontent.com/89710667/139113215-d0d18baa-7b34-41e4-bd95-f9c732179126.PNG)
+
+![Capture3](https://user-images.githubusercontent.com/89710667/139113220-c929e524-ea47-4b35-b1ef-9c616e74cd0e.PNG)
 
 ## Built With
 React 
@@ -10,8 +28,16 @@ React
 ## Tools
 AWS
 
-## Formatting / Validations
-Prettier / Eslint
+### CLI install and run
+
+```bash
+npm install
+```
+
+```bash
+npm run start
+```
+---
 
 ## Documentation
 
@@ -64,7 +90,6 @@ SCENARIO 2:  User can change the number of events they want to see
 * Given: the main page is open
 * When: user changes the value in the “Number of Events” input
 * Then: the user should see the chosen number of events
-
 
 ## FEATURE 4: USE THE APP WHEN OFFLINE
 ### As a developer, I should be able to display data to the user even when offline, so that the app won’t become completely irrelevant while there’s no internet connection
