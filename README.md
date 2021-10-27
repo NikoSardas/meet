@@ -3,13 +3,12 @@ a serverless, progressive web application (PWA) with React using a test-driven
 development (TDD) technique.
 
 ![Capture](https://user-images.githubusercontent.com/89710667/139113180-e4beab2b-0673-419e-b903-cf29d9f6dd8e.PNG)
-![Capture2](https://user-images.githubusercontent.com/89710667/139113215-d0d18baa-7b34-41e4-bd95-f9c732179126.PNG)
-![Capture3](https://user-images.githubusercontent.com/89710667/139113220-c929e524-ea47-4b35-b1ef-9c616e74cd0e.PNG)
 
 ## Description
 A serverless, progressive web application (PWA) with React using a
 test-driven development (TDD) technique. The application uses the Google
 Calendar API to fetch upcoming events.
+
 
 ## Features
 * Filter events by city.
@@ -18,6 +17,10 @@ Calendar API to fetch upcoming events.
 * Use the app when offline.
 * Add an app shortcut to the home screen.
 * View a chart showing the number of upcoming events by city.
+
+![Capture2](https://user-images.githubusercontent.com/89710667/139113215-d0d18baa-7b34-41e4-bd95-f9c732179126.PNG)
+
+![Capture3](https://user-images.githubusercontent.com/89710667/139113220-c929e524-ea47-4b35-b1ef-9c616e74cd0e.PNG)
 
 ## Built With
 React 
