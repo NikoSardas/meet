@@ -1,5 +1,11 @@
 const config = {
-  GET_EVENTS:
+  PRIVACY_HTML:
+    'https://NikoSardas.github.io/meet/privacy.html',
+    GOOGLE_ICON:
+    'https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg',
+    GITHUB_MEET:
+    'https://www.github.com/NikoSardas/meet',
+    GET_EVENTS:
     'https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/get-events',
   GET_AUTH_URL:
     'https://tge27ua11j.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url',

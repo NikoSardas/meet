@@ -52,7 +52,15 @@ ul {
   background-color: var(--main-color);
   color: var(--main-bg-color);
 }
+.recharts-responsive-container{
+   text-align: center;
+}
 
+@media all and (max-width: 768px) {
+  .recharts-surface{
+    width:600px;
+  }
+}
 
 .buttons {
   display: flex;

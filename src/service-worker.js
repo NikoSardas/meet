@@ -9,6 +9,7 @@ precacheAndRoute(self.__WB_MANIFEST)
 
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$')
 registerRoute(({ request, url }) => {
+  console.log('registerRoute(({ request, url })', request, url)
   if (request.mode !== 'navigate') {
     return false
   }

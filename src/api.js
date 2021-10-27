@@ -70,9 +70,9 @@ export const getAccessToken = async () => {
 }
 
 export const checkToken = async (accessToken) => {
-  const result = await fetch(`${config.ACCESS_TOKEN + accessToken}`)
+  const result = await fetch(`${config.ACCESS_TOKEN}${accessToken}`)
     .then((res) => res.json())
-    .catch((error) => error.json())
+    .catch((error) => error)
 
   console.log('checkToken result', result)
   return result

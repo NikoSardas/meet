@@ -2,6 +2,7 @@ import React from 'react'
 import './styles/WelcomeScreen.css'
 import logo from './wickedbackground.svg'
 import github_icon from './GitHub_icon.png'
+const config = require('./config')
 
 function WelcomeScreen(props) {
   return props.showWelcomeScreen ? (
@@ -28,10 +29,7 @@ function WelcomeScreen(props) {
         <span></span>
         <span></span>
       </div>
-      <div className="login-head">
-        <img className="logo-image" alt="Logo" src={logo} />
         <h1>Welcome to the Meet app</h1>
-      </div>
       <div className="button_cont" align="center">
         <div className="google-btn">
           <button
@@ -44,7 +42,7 @@ function WelcomeScreen(props) {
             <span className="google-icon-wrapper">
               <img
                 className="google-icon"
-                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                src={config.GOOGLE_ICON}
                 alt="Google sign-in"
               />
             </span>
@@ -52,7 +50,12 @@ function WelcomeScreen(props) {
           </button>
         </div>
       </div>
-      <div className="dev-links" onClick={()=>{window.open('https://www.github.com/NikoSardas/meet')}}>
+      <div
+        className="dev-links"
+        onClick={() => {
+          window.open(config.GITHUB_MEET)
+        }}
+      >
         <h5>By Niko Sardas</h5>
         <img
           className="github_icon"
@@ -62,10 +65,7 @@ function WelcomeScreen(props) {
           height="64"
         />
       </div>
-      <a
-        href="https://NikoSardas.github.io/meet/privacy.html"
-        rel="nofollow noopener"
-      >
+      <a href={config.PRIVACY_HTML} rel="nofollow noopener">
         Privacy policy
       </a>
     </div>

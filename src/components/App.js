@@ -32,13 +32,13 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true
-    const accessToken = localStorage.getItem('access_token')
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true
-    const searchParams = new URLSearchParams(window.location.search)
-    const code = searchParams.get('code')
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) })
+    // const accessToken = localStorage.getItem('access_token')
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true
+    // const searchParams = new URLSearchParams(window.location.search)
+    // const code = searchParams.get('code')
+    // this.setState({ showWelcomeScreen: !(code || isTokenValid) })
 
-    if ((code || isTokenValid) && this.mounted) {
+    // if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         const allEvents = events
         if (this.mounted) {
@@ -50,7 +50,7 @@ class App extends Component {
           })
         }
       })
-    }
+    // }
   }
 
   componentWillUnmount() {
@@ -89,9 +89,9 @@ class App extends Component {
   render() {
     const { displayedEvents, locations, numberOfEvents, showWelcomeScreen } =
       this.state
-    if (showWelcomeScreen === undefined) {
-      return <div className="App" />
-    }
+    // if (showWelcomeScreen === undefined) {
+    //   return <div className="App" />
+    // }
     return (
       <div className="App">
         <Container>
@@ -146,12 +146,12 @@ class App extends Component {
           </Row>
           <EventList events={displayedEvents} />
         </Container>
-        <WelcomeScreen
+        {/* <WelcomeScreen
           showWelcomeScreen={showWelcomeScreen}
           getAccessToken={() => {
             getAccessToken()
           }}
-        />
+        /> */}
       </div>
     )
   }
