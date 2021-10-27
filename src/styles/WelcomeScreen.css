@@ -20,6 +20,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  text-align: center;
 }
 img {
   margin: 0 4px;
@@ -38,7 +39,7 @@ button {
 .logo-image{
   height: 44px;
 }
-
+ 
 .google-btn :hover {
   background-color: var(--event-description-color);
   color: var(--event-background-color);

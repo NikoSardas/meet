@@ -27,11 +27,15 @@ export const getEvents = async () => {
 
   const token = await getAccessToken()
   if (token) {
+    console.log('getAccessToken token', token)
     removeQuery()
     const url = config.GET_EVENTS + '/' + token
     const result = await axios.get(url)
     if (result.data) {
-      console.log(result)
+      console.log(
+        'axios.get(config.GET_EVENTS + ' / ' + token) result.data',
+        result
+      )
       var locations = extractLocations(result.data.events)
       localStorage.setItem('lastEvents', JSON.stringify(result.data))
       localStorage.setItem('locations', JSON.stringify(locations))
@@ -43,15 +47,20 @@ export const getEvents = async () => {
 
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token')
+  console.log('localStorage.getItem(access_token)', accessToken)
   const tokenCheck = accessToken && (await checkToken(accessToken))
+  console.log('tokenCheck', tokenCheck)
 
   if (!accessToken || tokenCheck.error) {
     await localStorage.removeItem('access_token')
     const searchParams = new URLSearchParams(window.location.search)
+    console.log('searchParams', searchParams)
     const code = await searchParams.get('code')
+    console.log('code', code)
 
     if (!code) {
       const results = await axios.get(config.GET_AUTH_URL)
+      console.log('if (!code) results', results)
       const { authUrl } = results.data
       return (window.location.href = authUrl)
     }
@@ -65,6 +74,7 @@ export const checkToken = async (accessToken) => {
     .then((res) => res.json())
     .catch((error) => error.json())
 
+  console.log('checkToken result', result)
   return result
 }
 
@@ -92,5 +102,6 @@ const getToken = async (code) => {
 
   access_token && localStorage.setItem('access_token', access_token)
 
+  console.log('getToken access_token', access_token)
   return access_token
 }
