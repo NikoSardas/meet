@@ -11707,7 +11707,7 @@ const mockData = [
       'https://www.google.com/calendar/event?eid=MTExdm1sYmw3cDhnbWMwZmJmNXUxMDdwOHVfMjAyMDA3MzBUMDcwMDAwWiBmdWxsc3RhY2t3ZWJkZXZAY2FyZWVyZm91bmRyeS5jb20',
     created: '2020-07-01T15:47:59.000Z',
     updated: '2020-07-01T15:52:58.005Z',
-    summary: 'React Native Tokyo',
+    summary: 'Node Native Tokyo',
     description:
       "We meet every Monday and Thursday to talk about React Native and native app development in general. React Native Tokyo is an inclusive community that tries to cater to all levels of learners during meetups. \n\nJoin us if you are curious to hear about what's new in the field of native app development.",
     location: 'Tokyo, Japan',
@@ -11894,7 +11894,7 @@ const mockData = [
       'https://www.google.com/calendar/event?eid=M2dsdDRkdmU5dWlwN29oNWc1a2IyYmlkMnNfMjAyMDA3MzBUMTYwMDAwWiBmdWxsc3RhY2t3ZWJkZXZAY2FyZWVyZm91bmRyeS5jb20',
     created: '2020-07-01T14:07:59.000Z',
     updated: '2020-07-01T14:08:15.945Z',
-    summary: 'Fun with Node.js',
+    summary: 'Node with Node.js',
     description:
       'Do you know that Node.js is basically a server having the capability of executing JavaScript? If you are familiar with JS, Node.js will be an easy ride. \n\nJoin us if you want to learn how to build the server-side of an app using Node.js.',
     location: 'Nairobi, Kenya',
@@ -12040,7 +12040,7 @@ const mockData = [
       'https://www.google.com/calendar/event?eid=NmNvMG9qbDBsMGowcmJoM2c1NnZsYzJzOWlfMjAyMDA3MzFUMDEwMDAwWiBmdWxsc3RhY2t3ZWJkZXZAY2FyZWVyZm91bmRyeS5jb20',
     created: '2020-07-01T13:44:15.000Z',
     updated: '2020-07-01T13:46:48.090Z',
-    summary: 'React California',
+    summary: 'Node California',
     description:
       'React is one of the most popular front-end frameworks. There is a huge number of job openings for React developers in most cities. \n\nReact California is a non-profit organization offering free training sessions to React enthusiasts every Wednesday and Friday.\n\nJoin us in our free React training sessions and give your career a new direction.',
     location: 'California, USA',
@@ -12186,7 +12186,7 @@ const mockData = [
       'https://www.google.com/calendar/event?eid=M3F0ZDZ1c2NxNHRzaTZnYzdubW10cHFsY3RfMjAyMDA3MzFUMTIwMDAwWiBmdWxsc3RhY2t3ZWJkZXZAY2FyZWVyZm91bmRyeS5jb20',
     created: '2020-05-19T19:14:30.000Z',
     updated: '2020-05-27T11:45:37.792Z',
-    summary: 'React is Fun',
+    summary: 'Node is Fun',
     description:
       'Love HTML, CSS, and JS? Want to become a cool front-end developer? \n\nReact is one of the most popular front-end frameworks. There is a huge number of job openings for React developers in most cities. \n\nJoin us in our free React training sessions and give your career a new direction. ',
     location: 'Berlin, Germany',

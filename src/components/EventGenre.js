@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts'
 
 const EventGenre = ({ events }) => {
   const [data, setData] = useState([])
 
-  const COLORS = ['#7E697A', '#525252', '#BB7D8C', '#8685EF', '#85663d']
+  const COLORS = ['#7E697A', '#525252', '#BB7D8C', '#8685EF', '#b58950']
 
   useEffect(() => {
     setData(() => {
       const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular']
       let data = genres.map((genre) => {
         const value = events.filter((event) =>
-          event.summary.split(' ').includes(genre)
+          event.summary.includes(genre)
         ).length
-
         return { name: genre, value }
       })
       data = data.filter((data) => data.value)
@@ -22,15 +21,14 @@ const EventGenre = ({ events }) => {
   }, [events])
 
   return (
-    <ResponsiveContainer height={400}>
+    <ResponsiveContainer height={300}>
       <PieChart>
+        <Legend verticalAlign="bottom" height={36} />
         <Pie
+          cx="50%"
+          cy="50%"
           data={data}
           labelLine={false}
-          innerRadius={30}
-          label={({ name, percent }) =>
-            `${name} ${(percent * 100).toFixed(0)}%`
-          }
           outerRadius={100}
           dataKey="value"
         >

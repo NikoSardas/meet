@@ -1,6 +1,6 @@
 import React from 'react'
 import './styles/WelcomeScreen.css'
-import logo from './wickedbackground.svg'
+// import logo from './wickedbackground.svg'
 import github_icon from './GitHub_icon.png'
 const config = require('./config')
 
