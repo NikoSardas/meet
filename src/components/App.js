@@ -8,7 +8,6 @@ import EventGenre from './EventGenre'
 import WelcomeScreen from '../WelcomeScreen.jsx'
 
 import { getEvents, extractLocations, checkToken, getAccessToken } from '../api'
-
 import { WarningAlert } from './Alert'
 
 import Navbar from 'react-bootstrap/Navbar'
@@ -32,25 +31,25 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true
-    // const accessToken = localStorage.getItem('access_token')
-    // const isTokenValid = (await checkToken(accessToken)).error ? false : true
-    // const searchParams = new URLSearchParams(window.location.search)
-    // const code = searchParams.get('code')
-    // this.setState({ showWelcomeScreen: !(code || isTokenValid) })
+    const accessToken = localStorage.getItem('access_token')
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true
+    const searchParams = new URLSearchParams(window.location.search)
+    const code = searchParams.get('code')
+    // const code = true
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) })
 
-    // if ((code || isTokenValid) && this.mounted) {
+    if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
-        const allEvents = events
         if (this.mounted) {
           this.setState({
+            allEvents: events,
             displayedEvents: events.slice(0, this.state.numberOfEvents),
             locations: extractLocations(events),
-            allEvents,
             currentLocation: 'See all cities',
           })
         }
       })
-    // }
+    }
   }
 
   componentWillUnmount() {
@@ -89,9 +88,9 @@ class App extends Component {
   render() {
     const { displayedEvents, locations, numberOfEvents, showWelcomeScreen } =
       this.state
-    // if (showWelcomeScreen === undefined) {
-    //   return <div className="App" />
-    // }
+    if (showWelcomeScreen === undefined) {
+      return <div className="App" />
+    }
     return (
       <div className="App">
         <Container>
@@ -146,12 +145,12 @@ class App extends Component {
           </Row>
           <EventList events={displayedEvents} />
         </Container>
-        {/* <WelcomeScreen
+        <WelcomeScreen
           showWelcomeScreen={showWelcomeScreen}
           getAccessToken={() => {
             getAccessToken()
           }}
-        /> */}
+        />
       </div>
     )
   }

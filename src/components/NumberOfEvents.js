@@ -34,7 +34,7 @@ class NumberOfEvents extends PureComponent {
               }}
             />
             <Form.Text className="text-muted">
-              Events displayed: {numberOfEvents}
+              Max displayed events: {numberOfEvents}
             </Form.Text>
           </Form.Group>
         </Form>

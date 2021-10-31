@@ -9,7 +9,6 @@ precacheAndRoute(self.__WB_MANIFEST)
 
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$')
 registerRoute(({ request, url }) => {
-  console.log('registerRoute(({ request, url })', request, url)
   if (request.mode !== 'navigate') {
     return false
   }
@@ -24,8 +23,8 @@ registerRoute(({ request, url }) => {
 }, createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html'))
 
 registerRoute(
-  ({ url }) => console.log('registerRoute url', url),
-  url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  ({ url }) =>
+    url.origin === self.location.origin && url.pathname.endsWith('.png'),
   new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [new ExpirationPlugin({ maxEntries: 50 })],
@@ -33,7 +32,6 @@ registerRoute(
 )
 
 self.addEventListener('message', (event) => {
-  console.log('self.addEventListener(message, (event)', event)
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting()
   }

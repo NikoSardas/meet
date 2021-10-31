@@ -32,19 +32,22 @@ button {
   color: var(--event-description-color);
 }
 
-.login-head{
-  display: flex
+.login-head {
+  display: flex;
 }
 
-.logo-image{
+.logo-image {
   height: 44px;
 }
- 
+
 .google-btn :hover {
   background-color: var(--event-description-color);
   color: var(--event-background-color);
 }
 
+.github_icon:hover {
+  cursor: pointer;
+}
 @keyframes move {
   100% {
     transform: translate3d(0, 0, 1px) rotate(360deg);
