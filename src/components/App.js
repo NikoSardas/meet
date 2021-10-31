@@ -33,12 +33,18 @@ class App extends Component {
     this.mounted = true
     const accessToken = localStorage.getItem('access_token')
     const isTokenValid = (await checkToken(accessToken)).error ? false : true
+    console.log('isTokenValid', isTokenValid)
     const searchParams = new URLSearchParams(window.location.search)
+    console.log('searchParams', searchParams)
     const code = searchParams.get('code')
-    // const code = true
+    console.log('code', code)
     this.setState({ showWelcomeScreen: !(code || isTokenValid) })
 
     if ((code || isTokenValid) && this.mounted) {
+      console.log(
+        '(code || isTokenValid) && this.mounted',
+        (code || isTokenValid) && this.mounted
+      )
       getEvents().then((events) => {
         if (this.mounted) {
           this.setState({
