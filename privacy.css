@@ -5,7 +5,8 @@
   --main-color: #525252;
 }
 
-body, html {
+body,
+html {
   height: 100%;
 }
 
@@ -21,7 +22,7 @@ body {
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  margin:auto;
+  margin: auto;
 }
 
 .privacy-back-button {
@@ -29,12 +30,10 @@ body {
   background-color: transparent;
   color: var(--main-color);
   width: 100px;
-  height: 80px;
-  border: none;
+  height: 50px;
   font-weight: bold;
 }
 
 .privacy-back-button:hover {
-  background-color: var(--main-color);
-  color: var(--event-background-color);
+  opacity: 0.8;
 }
