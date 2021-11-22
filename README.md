@@ -1,5 +1,7 @@
 # meet
-https://careerfoundry.com full stack web developer course PWA.
+https://careerfoundry.com full stack web developer course App.
+
+A PWA for displaying calendar events.
 
 ## Description
 A serverless, progressive web application (PWA) with React using a
