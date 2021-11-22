@@ -16,10 +16,7 @@ Calendar API to fetch upcoming events.
 * View a chart showing the number of upcoming events by city.
 
 ## Built With
-React 
-
-## Tools
-AWS
+React AWS
 
 ### CLI install and run
 
