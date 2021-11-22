@@ -24,7 +24,5 @@ npm run start
 ```
 ---
 
-## Documentation
-
 ## Live app
 https://nikosardas.github.io/meet/
