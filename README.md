@@ -9,7 +9,9 @@ test-driven development (TDD) technique. The application uses the Google
 Calendar API to fetch upcoming events.
 
 ## Built With
-React/AWS/Recharts
+- React
+- AWS
+- Recharts
 
 ### CLI install and run
 
